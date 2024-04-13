@@ -1,0 +1,27 @@
+body{
+
+}
+
+.header__nav{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-around;
+}
+
+.containerImage{
+    border: 1px solid purple;
+}
+
+.imageLogo{
+    max-width: 250px;
+}
+
+.header__list{
+    border: 1px solid blue;
+    width: 60%;
+}
+
+.header__sesion{
+    border: 1px solid orangered;
+    width: 400px;
+}
