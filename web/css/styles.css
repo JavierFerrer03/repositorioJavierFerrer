@@ -1,15 +1,6 @@
-body{
-
-}
-
 .header__nav{
-    border: 1px solid red;
     display: flex;
     justify-content: space-around;
-}
-
-.containerImage{
-    border: 1px solid purple;
 }
 
 .imageLogo{
@@ -17,11 +8,26 @@ body{
 }
 
 .header__list{
-    border: 1px solid blue;
-    width: 60%;
+    width: 80%;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
 }
 
 .header__sesion{
     border: 1px solid orangered;
     width: 400px;
+}
+
+.container__login{
+    width: 800px;
+    background-color: rgba(73, 79, 83, 0.637);
+    margin: 100px auto;
+}
+
+.section__image{
+    text-align: center;
 }

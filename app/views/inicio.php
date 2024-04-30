@@ -12,23 +12,26 @@
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid header__nav">
-                <div class="containerImage">
-                    <img src="web/images/logo.png" alt="" class="imageLogo">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="header__list">
-                    <ul class="list">
-                        <li class="header__items"><a href="" class="header__link"></a>Entrenamiento</li>
-                        <li class="header__items"><a href="" class="header__link"></a>Entrenamiento</li>
-                        <li class="header__items"><a href="" class="header__link"></a>Entrenamiento</li>
-                        <li class="header__items"><a href="" class="header__link"></a>Entrenamiento</li>
+            <div class="container-fluid">
+                <img src="web/images/logo.png" alt="" class="imageLogo">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-75 border justify-content-around">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Entrenamientos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dietas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Recetas</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="header__sesion">
-                    
+                <div class="navbar-login">
+                    <a href="index.php?accion=login">Iniciar Sesión</a>
                 </div>
             </div>
         </nav>
