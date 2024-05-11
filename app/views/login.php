@@ -12,22 +12,22 @@
     <section>
         <div class="contenedor">
             <div class="formulario">
-                <form action="" method="">
+                <form action="index.php?accion=login" method="post">
                     <h2>Inicio Sesión</h2>
 
                     <div class="input-contenedor">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" required>
+                        <input type="email" name="email">
                         <label for="#">Email</label>
                     </div>
 
                     <div class="input-contenedor">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required>
+                        <input type="password" name="password">
                         <label for="#">Password</label>
                     </div>
                     <div>
-                        <button>Acceder</button>
+                        <input type="submit" value="Acceder">
                         <div class="registrar">
                             <p>No tengo cuenta <a href="index.php?accion=register">Registrate</a></p>
                         </div>

@@ -1,7 +1,10 @@
 <?php 
 require_once ('app/controllers/ControladorInicio.php');
 require_once ('app/controllers/ControladorUsuarios.php');
-
+require_once ('app/config/config.php');
+require_once ('app/models/ConexionDB.php');
+require_once ('app/models/User.php');
+require_once ('app/models/UserDAO.php');
 
 session_start();
 
@@ -13,7 +16,7 @@ $mapa = array(
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio
     if(isset($mapa[$_GET['accion']])){  //Compruebo si la accción existe en el mapa, sino muestro error 404
-        $accion = $_GET['accion']; 
+        $accion = $_GET['accion'];
     }
     else{
         //La acción no existe

@@ -8,7 +8,6 @@ class User{
     private $lastName;
     private $registerDate;
     private $dni;
-    private $rol;
     private $sid;
 
     
@@ -152,24 +151,6 @@ class User{
     public function setDni($dni): self
     {
         $this->dni = $dni;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of rol
-     */
-    public function getRol()
-    {
-        return $this->rol;
-    }
-
-    /**
-     * Set the value of rol
-     */
-    public function setRol($rol): self
-    {
-        $this->rol = $rol;
 
         return $this;
     }

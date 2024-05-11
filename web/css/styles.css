@@ -31,3 +31,20 @@
 .section__image{
     text-align: center;
 }
+
+.login__user{
+    border: 1px solid red;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon__user{
+    font-size: 1.8rem;
+    margin-top: 2px;
+}
+
+.user__name{
+    margin-top: 3px;
+    margin-left: 10px;
+}
