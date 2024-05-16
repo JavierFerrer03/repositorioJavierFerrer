@@ -17,7 +17,7 @@ class ControladorUsuarios
             if ($user) {
                 if (password_verify($password, $user->getPassword())) {
                     setcookie('sid', $user->getSid(), time() + 24 * 60 * 60, '/');
-                    $_SESSION['name'] = $user->getUsername();
+                    $_SESSION['username'] = $user->getUsername();
                     header('location: index.php');
                 } else {
                     $error = 'La contraseña no coincide';

@@ -1,50 +1,239 @@
-.header__nav{
+@font-face {
+    font-family: 'Lato';
+    src: url('web/fonts/Lato-Regular.ttf');
+}
+.body{
+    background-color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header__nav {
     display: flex;
     justify-content: space-around;
 }
 
-.imageLogo{
-    max-width: 250px;
+.custom-header{
+    background-color: #212529;
 }
 
-.header__list{
+.imageLogo {
+    width: 250px;
+}
+
+.header__list {
     width: 80%;
 }
 
-.list{
+.list {
     list-style: none;
     display: flex;
     justify-content: space-around;
 }
 
-.header__sesion{
+.header__sesion {
     border: 1px solid orangered;
     width: 400px;
 }
 
-.container__login{
+.container__login {
     width: 800px;
     background-color: rgba(73, 79, 83, 0.637);
     margin: 100px auto;
 }
 
-.section__image{
+.button__login{
+    border: none;
+    background-color: #33C490;
+    border-radius: 0.6rem;
+}
+
+.link__login{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #212529;
+    margin: 10px;
+}
+
+.button__login:hover{
+    background-color: #33c48fa8;
+    color: #1b1d20;
+    transition: 1s;
+}
+
+.main{
+    margin-top: 20px;
+}
+
+.video{
+    width: 100%;
+    display: block;
+}
+
+.section__video {
+    position: relative;
+    margin: 0 auto;
+}
+
+.video {
+    display: block;
+    width: 100%;
+}
+
+.play-button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+    background-color: #33C490;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.play-button:hover {
+    background-color: #33c48fa8;
+}
+
+.link__video{
+    text-decoration: none;
+    color: white;
+}
+
+.section__image {
     text-align: center;
 }
 
-.login__user{
-    border: 1px solid red;
+.login__user {
     width: 300px;
     display: flex;
     justify-content: center;
 }
 
-.icon__user{
+.icon__user {
     font-size: 1.8rem;
     margin-top: 2px;
+    color: #33C490;
 }
 
-.user__name{
+.user__name {
     margin-top: 3px;
     margin-left: 10px;
+    color: aliceblue;
+}
+
+.swiper {
+    width: 600px;
+    height: 300px;
+}
+
+.main__title{
+    text-align: center;
+    color: #33C490;
+    margin-top: 10px;
+}
+
+.section__description{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.description {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.description__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    color: #33C490;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.description__text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.6em;
+    line-height: 1.6;
+    color: #9c9b9b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.descripction__image{
+    width: 45%;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 25%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+.img__description{
+    view-timeline-name: --image;
+    view-timeline-axis: block;
+    animation-timeline: --image;
+    animation-name: show;
+    animation-range: entry 10% cover 30%;
+    animation-fill-mode: both;
+    border-radius: 0.6rem;
+}
+
+.section__info{
+    border: 1px solid red;
+}
+
+.section__tarifas{
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.card-discount{
+    color: red;
+}
+
+.card-tittle{
+    font-size: 2rem;
+    color: #fff;
+}
+
+.card-price{
+    font-size: 2.2rem;
+    color: #fff;
+}
+
+.price{
+    text-decoration: line-through;
+    color: red;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.card-text{
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.card-info{
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.432);
+    color: #fff;
+}
+
+.section__accordion{
+    width: 40%;
+    margin: 20px;
 }
