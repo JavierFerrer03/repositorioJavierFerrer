@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-75 justify-content-around">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Entrenamientos</a>
+                            <a class="nav-link" href="index.php?accion=inicioTraining">Entrenamientos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Dietas</a>
@@ -49,29 +49,51 @@
         <section class="section__video">
             <video src="web/video/intro.mp4" muted autoplay playsinline loop class="video"></video>
             <div class="button-container">
-                <button class="play-button"><a href="index.php?accion=register" class="link__video">COMIENZA HOY</a></button>
+                <button class="play-button"><a href="index.php?accion=register" class="link__login">COMIENZA HOY</a></button>
             </div>
         </section>
         <h1 class="main__title mt-5 border-bottom">BIENVENIDO A HEALTHMASTERY</h1>
         <section class="section__description">
-            <div class="description">
-                <h3 class="description__title">MUCHO MÁS QUE UNA WEB DE ENTRENAMIENTO Y ALIMENTACIÓN SALUDABLE</h3>
-                <p class="description__text">HealthMastery es una plataforma digital diseñada para ser el destino definitivo para todos aquellos que buscan mejorar su bienestar físico y mental. Orientada a entrenamientos, dietas, salud y fitness, HealthMastery se destaca por ofrecer 
-                    un enfoque holístico y personalizado, adaptado a las necesidades y objetivos individuales de cada usuario.</p>
-            </div>
-            <div class="descripction__image">
-                <img src="web/images/foto1.webp" alt="" class="img__description">
+            <div class="container">
+                <div class="row">
+                    <div class="description col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0">
+                        <h3 class="description__title">MUCHO MÁS QUE UNA WEB DE ENTRENAMIENTO Y ALIMENTACIÓN SALUDABLE</h3>
+                        <p class="description__text">HealthMastery es una plataforma digital diseñada para ser el destino definitivo para todos aquellos que buscan mejorar su bienestar físico y mental. Orientada a entrenamientos, dietas, salud y fitness, HealthMastery se destaca por ofrecer
+                            un enfoque holístico y personalizado, adaptado a las necesidades y objetivos individuales de cada usuario.</p>
+                    </div>
+                    <div class="description__image col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <img src="web/images/foto1.webp" alt="" class="img__description img-fluid">
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="section__tarifas">
-            <div class="container text-center d-flex justify-content-around">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card" style="width: 25rem; background-color: #131518;">
-                            <div class="card-text d-flex justify-content-around border-bottom">
-                                <h5 class="mt-2">PAGO ANUAL</h5>
+        <section class="section__users">
+            <div class="row">
+                <div class="user__button col-4 text-center">
+                    <button class="button__user"><a href="index.php?accion=register" class="link__login">¡ME APUNTO!</a></button>
+                </div>
+                <div class="user__text col-4">
+                    <h4 class="text__user">Únete a nuestra plataforma para formar parte <br>
+                        de nuestra gran familia HealthMastery</h4>
+                </div>
+                <div class="user__images col-4 d-flex justify-content-center">
+                    <img src="web/images/perfil1.jpeg" alt="" class="user__profile">
+                    <img src="web/images/perfil2.jpeg" alt="" class="user__profile">
+                    <img src="web/images/perfil3.jpg" alt="" class="user__profile">
+                    <img src="web/images/perfil4.jpg" alt="" class="user__profile">
+                </div>
+            </div>
+        </section>
+        <h2 class="main__subtitle">TU GUÍA HACIA UN ESTILOS DE VIDA <br> MÁS SALUDABLE</h2>
+        <section class="section__tarifas py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="card mx-auto" style="width: 100%; max-width: 25rem; background-color: #131518;">
+                            <div class="card-header text-center border-bottom">
+                                <h5 class="mt-2 card-tittle">PAGO ANUAL</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-tittle">PRUEBA 5 DÍAS GRATIS</h5>
                                 <h5 class="card-price"><span class="price">200€</span> 70€/AÑO</h5>
                                 <p class="card-text">130€ descuento</p>
@@ -79,19 +101,19 @@
                             </div>
                             <div class="card-footer">
                                 <p class="card-info">Rutinas de entrenamiento adaptadas a cada persona.</p>
-                                <p class="card-info">Todo la información necesaria que necesita una persona para poder comenzar su cambio físico.</p>
-                                <p class="card-info">Ejercicios explicados por profesionales dentro de su campo.</p>
-                                <p class="card-info">Pautas de alimentación con menús saludables, para que sepas lo que tienes que comer cada día.</p>
-                                <p class="card-info">Acceso a toda la web para poder disfrutar de entrenamientos y dietas saludables.</p>
+                                <p class="card-info">Toda la información necesaria que necesitas para comenzar tu cambio físico.</p>
+                                <p class="card-info">Ejercicios explicados por profesionales.</p>
+                                <p class="card-info">Pautas de alimentación con menús saludables.</p>
+                                <p class="card-info">Acceso completo a la web.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="card" style="width: 25rem; background-color: #131518;">
-                            <div class="card-text d-flex justify-content-around border-bottom">
-                                <h5 class="mt-2">PAGO MENSUAL</h5>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="card mx-auto" style="width: 100%; max-width: 25rem; background-color: #131518;">
+                            <div class="card-header text-center border-bottom">
+                                <h5 class="mt-2 card-tittle">PAGO MENSUAL</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-tittle">PRUEBA 5 DÍAS GRATIS</h5>
                                 <p class="card-text">después</p>
                                 <h5 class="card-price">17€/MES</h5>
@@ -99,57 +121,100 @@
                             </div>
                             <div class="card-footer">
                                 <p class="card-info">Rutinas de entrenamiento adaptadas a cada persona.</p>
-                                <p class="card-info">Todo la información necesaria que necesita una persona para poder comenzar su cambio físico.</p>
-                                <p class="card-info">Ejercicios explicados por profesionales dentro de su campo.</p>
-                                <p class="card-info">Pautas de alimentación con menús saludables, para que sepas lo que tienes que comer cada día.</p>
-                                <p class="card-info">Acceso a toda la web para poder disfrutar de entrenamientos y dietas saludables.</p>
+                                <p class="card-info">Toda la información necesaria que necesitas para comenzar tu cambio físico.</p>
+                                <p class="card-info">Ejercicios explicados por profesionales.</p>
+                                <p class="card-info">Pautas de alimentación con menús saludables.</p>
+                                <p class="card-info">Acceso completo a la web.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- <section class="section__info">
-            <div class="section__accordion">
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="accordOne">
-                                Entrenamiento
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+        <h2 class="main__subtitle">Tu salud, nuestra prioridad</h2>
+        <section class="section__info py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="section__accordion">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="buttonAccordion" data-id="entrenamiento">
+                                            Entrenamiento
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" id="buttonAccordion" data-id="alimentacion">
+                                            Alimentación Saludable
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" id="buttonAccordion" data-id="recetas">
+                                            Recetas
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Alimentación Saludable
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                Recetas
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="section__image">
+                            <img src="web/images/foto1.webp" alt="" class="img__accordion" id="imgAccordion">
                         </div>
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
+        <section class="section__testimonials py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Testimonios de nuestros usuarios</h2>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial">
+                                <p>"HealthMastery ha cambiado mi vida. He logrado mis objetivos de fitness y me siento mejor que nunca."</p>
+                                <h5>Juan Pérez</h5>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial">
+                                <p>"Las recetas y planes de alimentación son increíbles. Nunca había comido tan saludable y delicioso."</p>
+                                <h5>María García</h5>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial">
+                                <p>"El soporte y la comunidad en HealthMastery me han mantenido motivado y en el camino correcto."</p>
+                                <h5>Carlos Sánchez</h5>
+                            </div>
+                        </div>
+                        <!-- Agrega más testimonios según sea necesario -->
+                    </div>
+                    <!-- Agregar navegación de swiper -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="bg-dark text-white py-4 mt-auto border-top">
         <div class="container">
             <div class="row">
-                <!-- Navigation Links -->
                 <div class="col-md-4 mb-3">
                     <h5>HealthMastery</h5>
                     <ul class="list-unstyled">
@@ -160,7 +225,6 @@
                         <li><a href="#" class="text-white text-decoration-none">Contacto</a></li>
                     </ul>
                 </div>
-                <!-- Social Media Links -->
                 <div class="col-md-4 mb-3">
                     <h5>Síguenos</h5>
                     <ul class="list-unstyled d-flex">
@@ -170,7 +234,6 @@
                         <li><a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a></li>
                     </ul>
                 </div>
-                <!-- Contact Info -->
                 <div class="col-md-4 mb-3">
                     <h5>Contacto</h5>
                     <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@healthmastery.com</p>
@@ -178,7 +241,6 @@
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Calle Ejemplo, 123, Madrid, España</p>
                 </div>
             </div>
-            <!-- Copyright -->
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2024 HealthMastery. Todos los derechos reservados.</p>
@@ -196,9 +258,10 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<!-- <script type="module" src="web/js/swiper.js"></script> -->
 <script src="web/js/js.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="web/js/swiper.js"></script>
+
 </body>
 
 </html>

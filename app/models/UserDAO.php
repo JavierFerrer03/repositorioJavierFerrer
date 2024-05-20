@@ -8,7 +8,7 @@ class UserDAO{
 
     /* Función para insertar a los usuarios en la base de datos */
     public function insertUsers(User $user){
-        if(!$stmt = $this->conn->prepare("INSERT INTO user (username, email, password, firstName, lastName, dni, sid) VALUES (?,?,?,?,?,?,?)")){
+        if(!$stmt = $this->conn->prepare("INSERT INTO user (username, email, password, firstName, lastName, dni, rol, sid) VALUES (?,?,?,?,?,?,?,?)")){
             die("Error al ejecutar la consulta SQL " . $this->conn->error);
         }
     
@@ -18,9 +18,10 @@ class UserDAO{
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
         $dni = $user->getDni();
+        $rol = $user->getRol();
         $sid = $user->getSid();
 
-        $stmt->bind_param('sssssss', $username, $email, $password, $firstName, $lastName, $dni, $sid);
+        $stmt->bind_param('ssssssss', $username, $email, $password, $firstName, $lastName, $dni, $rol, $sid);
         if($stmt->execute()){
             return $stmt->insert_id;
         }else{

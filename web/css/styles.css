@@ -97,11 +97,6 @@
     background-color: #33c48fa8;
 }
 
-.link__video{
-    text-decoration: none;
-    color: white;
-}
-
 .section__image {
     text-align: center;
 }
@@ -143,7 +138,6 @@
 
 .description {
     padding: 20px;
-    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -166,11 +160,6 @@
     margin-bottom: 20px;
     text-align: center;
 }
-
-.descripction__image{
-    width: 45%;
-}
-
 @keyframes show {
     from {
         opacity: 0;
@@ -193,13 +182,11 @@
     border-radius: 0.6rem;
 }
 
-.section__info{
-    border: 1px solid red;
-}
-
-.section__tarifas{
+.main__subtitle{
+    color: #33C490;
+    font-size: 2rem;
+    text-align: center;
     margin-top: 40px;
-    padding: 20px;
 }
 
 .card-discount{
@@ -233,7 +220,169 @@
     color: #fff;
 }
 
+.section__users{
+    background-color: #2e2c2c62;
+    border-top: 1px solid #9c9b9b;
+    border-bottom: 1px solid #9c9b9b;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.button__user{
+    border: none;
+    background-color: #33C490;
+    border-radius: 0.6rem;
+    padding: 10px;
+    margin-top: 7px;
+    width: 200px;
+    font-size: 1.3rem;
+}
+
+.button__user:hover{
+    background-color: #33c48fa8;
+    color: #1b1d20;
+    transition: 1s;
+}
+
+.text__user{
+    color: #9c9b9b;
+    text-align: right;
+}
+
+.section__tarifas{
+    border-bottom: 1px solid #9c9b9b;
+}
+
 .section__accordion{
-    width: 40%;
-    margin: 20px;
+    width: 90%;
+    margin: 60px auto;
+}
+
+.img__accordion{
+    width: 500px;
+    text-align: center;
+}
+
+.user__profile{
+    width: 70px;
+    border-radius: 50%;
+}
+
+.swiper-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    width: auto;
+}
+
+.testimonial {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.testimonial h5 {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 20px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-pagination {
+    bottom: 10px;
+}
+
+.section__testimonials {
+    background-color: #fff;
+    padding: 50px 0;
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+}
+
+.section__testimonials h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Style for the page training routines */
+.section__addTraining{
+    border: 1px solid red;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.button__addTraining{
+    border: none;
+    background-color: #33C490;
+    width: 500px;
+    padding: 10px;
+    border-radius: 0.6rem;
+}
+
+.button__addTraining:hover{
+    transition: 1s;
+    color: #1b1d20;
+    background-color: #33c48fa8;
+}
+
+.link__addTraining{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.4rem;
 }

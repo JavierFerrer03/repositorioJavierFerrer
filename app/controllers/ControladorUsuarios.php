@@ -18,6 +18,7 @@ class ControladorUsuarios
                 if (password_verify($password, $user->getPassword())) {
                     setcookie('sid', $user->getSid(), time() + 24 * 60 * 60, '/');
                     $_SESSION['username'] = $user->getUsername();
+                    $_SESSION['rol'] = $user->getRol();
                     header('location: index.php');
                 } else {
                     $error = 'La contraseña no coincide';
@@ -52,6 +53,7 @@ class ControladorUsuarios
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setDni($dni);
+            $user->setRol('CLIENTE');
             $user->setSid(sha1(rand() + time()), true);
 
             if ($userDAO->insertUsers($user)) {

@@ -1,6 +1,7 @@
 <?php 
 require_once ('app/controllers/ControladorInicio.php');
 require_once ('app/controllers/ControladorUsuarios.php');
+require_once ('app/controllers/ControladorEntrenamientos.php');
 require_once ('app/config/config.php');
 require_once ('app/models/ConexionDB.php');
 require_once ('app/models/User.php');
@@ -12,6 +13,7 @@ $mapa = array(
     'inicio'=>array('controlador'=>'ControladorInicio','metodo'=>'inicio','privada'=>false),
     'login'=>array('controlador'=>'ControladorUsuarios','metodo'=>'login'),
     'register'=>array('controlador'=>'ControladorUsuarios','metodo'=>'register'),
+    'inicioTraining'=>array('controlador'=>'ControladorEntrenamientos','metodo'=>'inicioTraining'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio
