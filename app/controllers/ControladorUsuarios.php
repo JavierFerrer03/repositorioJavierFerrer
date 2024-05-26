@@ -19,6 +19,7 @@ class ControladorUsuarios
                     setcookie('sid', $user->getSid(), time() + 24 * 60 * 60, '/');
                     $_SESSION['username'] = $user->getUsername();
                     $_SESSION['rol'] = $user->getRol();
+                    $_SESSION['idUser'] = $user->getId();
                     header('location: index.php');
                 } else {
                     $error = 'La contraseña no coincide';
@@ -32,7 +33,7 @@ class ControladorUsuarios
 
     public function register()
     {
-        /* $error = ''; */
+        $error = '';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = htmlentities($_POST['username']);
             $email = htmlentities($_POST['email']);
@@ -56,10 +57,29 @@ class ControladorUsuarios
             $user->setRol('CLIENTE');
             $user->setSid(sha1(rand() + time()), true);
 
-            if ($userDAO->insertUsers($user)) {
+            if (empty($username) || empty($email) || empty($password) || empty($firstName) || empty($lastName) || empty($dni)) {
+                $error = '¡Los campos son obligatorios!';
+            } else if ($userDAO->getByEmail($email)) {
+                $error = '¡Ya existe un usuario con ese correo!';
+            } else if (strlen($password) <= 4) {
+                $error = '¡La contraseña debe contener más de 4 caracteres!';
+            } else {
+                $userDAO->insertUsers($user);
                 header('location: index.php');
+                die();
             }
         }
         require 'app/views/register.php';
+    }
+
+    public function logout()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        session_destroy();
+        echo json_encode(['status' => 'success']);
+        die(); // Asegúrate de terminar la ejecución
     }
 }

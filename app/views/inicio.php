@@ -37,9 +37,16 @@
                         <button class="button__login"><a href="index.php?accion=login" class="link__login">Iniciar Sesión</a></button>
                     </div>
                 <?php else : ?>
-                    <div class="login__user">
-                        <i class="fa-solid fa-user icon__user"></i>
-                        <h4 class="user__name"><?= $_SESSION['username'] ?></h4>
+                    <div class="dropdown login__user">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user icon__user"></i>
+                            <?= $_SESSION['username'] ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
+                        </ul>
                     </div>
                 <?php endif; ?>
             </div>
@@ -179,37 +186,28 @@
                 </div>
             </div>
         </section>
-        <section class="section__testimonials py-5">
-            <div class="container">
-                <h2 class="text-center mb-4">Testimonios de nuestros usuarios</h2>
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testimonial">
-                                <p>"HealthMastery ha cambiado mi vida. He logrado mis objetivos de fitness y me siento mejor que nunca."</p>
-                                <h5>Juan Pérez</h5>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial">
-                                <p>"Las recetas y planes de alimentación son increíbles. Nunca había comido tan saludable y delicioso."</p>
-                                <h5>María García</h5>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial">
-                                <p>"El soporte y la comunidad en HealthMastery me han mantenido motivado y en el camino correcto."</p>
-                                <h5>Carlos Sánchez</h5>
-                            </div>
-                        </div>
-                        <!-- Agrega más testimonios según sea necesario -->
-                    </div>
-                    <!-- Agregar navegación de swiper -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
+        <section class="section__galery mt-5">
+            <h2 class="main__subtitle border-bottom">Transforma tu cuerpo, transforma tu vida.</h2>
+            <ul class="code">
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio.jpeg" alt="" class="image__galery">
+                </li>
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio2.jpg" alt="" class="image__galery">
+                </li>
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio3.jpg" alt="" class="image__galery">
+                </li>
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio.jpeg" alt="" class="image__galery">
+                </li>
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio2.jpg" alt="" class="image__galery">
+                </li>
+                <li tabindex="0" class="digit">
+                    <img src="web/images/cambio3.jpg" alt="" class="image__galery">
+                </li>
+            </ul>
         </section>
     </main>
     <footer class="bg-dark text-white py-4 mt-auto border-top">
@@ -253,15 +251,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="web/js/js.js"></script>
-</body>
-
-</html>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="web/js/js.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="web/js/swiper.js"></script>
-
 </body>
 
 </html>

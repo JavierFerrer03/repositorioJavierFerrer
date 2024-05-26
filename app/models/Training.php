@@ -6,6 +6,7 @@ class Training{
     private $difficultyLevel;
     private $duration;
     private $category;
+    private $trainingPhoto;
     private $idUser;
     
     /**
@@ -112,6 +113,24 @@ class Training{
     public function setCategory($category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idUser
+     */
+    public function getTrainingPhoto()
+    {
+        return $this->trainingPhoto;
+    }
+
+    /**
+     * Set the value of idUser
+     */
+    public function setTrainingPhoto($trainingPhoto): self
+    {
+        $this->trainingPhoto = $trainingPhoto;
 
         return $this;
     }
