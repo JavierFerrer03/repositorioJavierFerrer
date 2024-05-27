@@ -74,12 +74,81 @@ class ControladorUsuarios
 
     public function logout()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+        unset($_SESSION['username']);
+        setcookie('sid', '', 0);
+        header('Location: index.php?accion=inicio');
+    }
+
+    public function profile(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        if (!isset($_SESSION['idUser'])) {
+            header('Location: index.php?accion=login');
+            die();
         }
-        
-        session_destroy();
-        echo json_encode(['status' => 'success']);
-        die(); // Asegúrate de terminar la ejecución
+
+        $idUser = $_SESSION['idUser'];
+        $userDAO = new UserDAO($conn);
+
+        $user=$userDAO->getById($idUser);
+        require 'app/views/profile.php';
+    }
+
+    public function editProfile(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $idUser = htmlentities($_GET['id']);
+        $userDAO = new UserDAO($conn);
+        $user = $userDAO->getById($idUser);
+        $error = '';
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $username = htmlentities($_POST['username']);
+            $email = htmlentities($_POST['email']);
+            $firstName = htmlentities($_POST['firstName']);
+            $lastName = htmlentities($_POST['lastName']);
+            $dni = htmlentities($_POST['dni']);
+
+            if(empty($username) || empty($email) || empty($firstName) || empty($lastName) || empty($dni)){
+                $error = '¡Los campos son obligatorios!';
+            }else{
+                $user->setUsername($username);
+                $user->setEmail($email);
+                $user->setFirstName($firstName);
+                $user->setLastName($lastName);
+                $user->getDni($dni);
+                if($userDAO->update($user)){
+                    header('location: index.php?accion=profile');
+                    die();
+                }else{
+                    $error = 'Error al actualizar los datos';
+                }
+            }
+        }
+    }
+
+    public function clients(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $userDAO = new UserDAO($conn);
+        $users = $userDAO->getAllClients();
+
+        require 'app/views/clients.php';
+    }
+
+    public function darBaja(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $userDAO = new UserDAO($conn);
+        $idUser = htmlentities($_GET['id']);
+
+        if($userDAO->deleteById($idUser)){
+            header('location: index.php?accion=clients');
+            die();
+        }
     }
 }

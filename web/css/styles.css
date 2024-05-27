@@ -949,3 +949,92 @@ ul {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+/* Style for the profile page */
+.section__profile{
+    width: 900px;
+    border: 1px solid #33C490;
+    margin: 50px auto;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 16px #33C490;
+}
+
+.article__image{
+    background-color: #33C490;
+    border-radius: 0.5rem;
+}
+
+.img__profile{
+    width: 200px;
+    position: relative;
+    top: 70px; left: 350px;
+}
+
+.article__profile{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form__profile{
+    margin-top: 80px;
+}
+
+.form__button{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+/* Style for the clients pages */
+.table__clients{
+    border: 1px solid #33C490;
+    width: 1200px;
+    margin: 100px auto;
+    box-shadow: 0 2px 16px #33C490;
+}
+
+.tr__clients{
+    border: 1px solid #33C490;
+}
+
+.td__clients{
+    border: 1px solid #33C490;
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.link__remove{
+    font-size: 1.4rem;
+    color: #33C490;
+    width: 100%;
+}
+
+.link__remove:hover{
+    color: red;
+}
+
+.section__button{
+    text-align: center;
+}
+
+.button__back{
+    width: 800px;
+    border: none;
+    background-color: #33C490;
+    color: #1b1d20;
+    border-radius: 0.6rem;
+    padding: 5px;
+}
+
+.button__back:hover{
+    background-color: #33c48fa8;
+    color: #1b1d20;
+}
+
+.link__back{
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #212529;
+}

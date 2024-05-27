@@ -43,8 +43,12 @@
                             <?= $_SESSION['username'] ?>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
+                            <?php if($_SESSION['rol'] === 'ADMIN') : ?>
+                                <li><a class="dropdown-item" href="index.php?accion=clients">Todos Clientes</a></li>
+                            <?php elseif($_SESSION['rol'] === 'CLIENTE') : ?>
+                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                            <?php endif ; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>
                     </div>
