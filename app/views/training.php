@@ -39,9 +39,20 @@
                         <button class="button__login"><a href="index.php?accion=login" class="link__login">Iniciar Sesión</a></button>
                     </div>
                 <?php else : ?>
-                    <div class="login__user">
-                        <i class="fa-solid fa-user icon__user"></i>
-                        <h4 class="user__name"><?= $_SESSION['username'] ?></h4>
+                    <div class="dropdown login__user">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user icon__user"></i>
+                            <?= $_SESSION['username'] ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
+                            <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
+                                <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
+                            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
+                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                            <?php endif; ?>
+                            <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
+                        </ul>
                     </div>
                 <?php endif; ?>
             </div>
@@ -133,23 +144,21 @@
             <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
                 <h1 class="main__title border-bottom">RUTINAS DE ENTRENAMIENTO</h1>
-                <section class="section__allTrainings container">
+                <section class="section__allTrainings">
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
                     <div class="row">
                         <?php foreach ($trainings as $training) : ?>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-6">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
                                 <div class="card__allTraining">
                                     <button class="btn-delete"><a href="index.php?accion=deleteTraining&id=<?= $training->getId() ?>" class="link__btn-delete">×</a></button>
                                     <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-<?= $training->getId() ?>">✎</button>
-                                    <img src="web/trainingPhoto/pesas.jpg" alt="Imagen de pesas" class="img__allTraining">
+                                    <img src=<?= $training->getTrainingPhoto() ?> alt="Imagen de pesas" class="img__allTraining">
                                     <div class="card-content__allTraining">
                                         <h2 class="title__allTraining"><?= $training->getName() ?></h2>
-                                        <p class="text__allTraining">
-                                            <?= $training->getDescription() ?>
-                                        </p>
-                                        <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">
-                                            MOSTRAR EJERCICIOS
-                                        </a>
+                                        <p class="text__allTraining"><?= $training->getDescription() ?></p>
+                                        <p class="text__allTraining">Dificultad: <?= $training->getDifficultyLevel() ?></p>
+                                        <p class="text__allTraining">Tiempo: <?= $training->getDuration() ?></p>
+                                        <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">MOSTRAR EJERCICIOS</a>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +204,7 @@
                 <section class="section__addTraining">
                     <!-- Sección para añadir una nueva rutina a mi página web -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         AÑADIR NUEVA RUTINA DE ENTRENAMIENTO
                     </button>
                     <!-- Modal -->
@@ -207,31 +216,39 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="index.php?accion=registerTraining" method="POST">
-                                        <label for="name" class="label__addTraining">NOMBRE DE LA RUTINA</label><br>
-                                        <input type="text" name="name" class="input__addTraining"><br>
-                                        <label for="duration" class="label__addTraining">DURACIÓN DE LA RUTINA</label><br>
-                                        <input type="text" name="duration" class="input__addTraining"><br>
-                                        <label for="difficultyLevel">NIVEL DE DIFICULTAD</label><br>
-                                        <select name="difficultyLevel" id="">
+                                    <form action="index.php?accion=registerTraining" method="POST" class="form__addTraining" enctype="multipart/form-data">
+                                        <label for="name" class="label__addTraining">NOMBRE DE LA RUTINA</label>
+                                        <input type="text" name="name" class="input__addTraining">
+
+                                        <label for="duration" class="label__addTraining">DURACIÓN DE LA RUTINA</label>
+                                        <input type="text" name="duration" class="input__addTraining">
+
+                                        <label for="difficultyLevel" class="label__addTraining">NIVEL DE DIFICULTAD</label>
+                                        <select name="difficultyLevel" class="select__addTraining">
                                             <option value="PRINCIPIANTE">PRINCIPIANTE</option>
                                             <option value="INTERMEDIO">INTERMEDIO</option>
                                             <option value="AVANZADO">AVANZADO</option>
                                             <option value="EXPERTO">EXPERTO</option>
-                                        </select><br>
-                                        <label for="category">CATEGORÍA</label><br>
-                                        <select name="category" id="">
+                                        </select>
+
+                                        <label for="category" class="label__addTraining">CATEGORÍA</label>
+                                        <select name="category" class="select__addTraining">
                                             <option value="FUERZA">FUERZA</option>
                                             <option value="CARDIO">CARDIO</option>
                                             <option value="HIIT">HIIT</option>
                                             <option value="ESTIRAMIENTOS">ESTIRAMIENTOS</option>
                                             <option value="YOGA">YOGA</option>
-                                        </select><br>
-                                        <label for="trainingPhoto">PRESENTACIÓN</label><br>
-                                        <input type="file" name="trainingPhoto[]" multiple class="input__addTraining"><br>
-                                        <textarea name="description" id="" class="textarea__addTrainig"></textarea> <br>
-                                        <input type="submit" value="GUARDAR">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </select>
+
+                                        <label for="trainingPhoto" class="label__addTraining">PRESENTACIÓN</label>
+                                        <input type="file" name="trainingPhoto[]" multiple class="input__addTraining">
+
+                                        <label for="description" class="label__addTraining">DESCRIPCIÓN</label>
+                                        <textarea name="description" class="textarea__addTraining"></textarea>
+
+                                        <div class="modal-footer">
+                                            <input type="submit" value="GUARDAR" class="button__addTraining">
+                                        </div>
                                     </form>
                                 </div>
                             </div>

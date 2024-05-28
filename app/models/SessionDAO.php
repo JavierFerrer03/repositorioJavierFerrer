@@ -51,4 +51,23 @@ class SessionDAO{
         $stmt->bind_param('ssi', $type, $description, $id);
         return $stmt->execute();
     }
+
+    public function insertSession(Session $session){
+        if(!$stmt = $this->conn->prepare("INSERT INTO session (type, description, sessionPhoto, idTraining) VALUES (?,?,?,?)"))
+        {
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+
+        $type = $session->getType();
+        $description = $session->getDescription();
+        $sessionPhoto = $session->getSessionPhoto();
+        $idTraining = $session->getIdTraining();
+
+        $stmt->bind_param('sssi', $type, $description, $sessionPhoto, $idTraining);
+        if($stmt->execute()){
+            return $stmt->insert_id;
+        }else{
+            return false;
+        }
+    }
 }

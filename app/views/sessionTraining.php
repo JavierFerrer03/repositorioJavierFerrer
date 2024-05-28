@@ -105,18 +105,13 @@
                     <div class="card__allTraining">
                         <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop-<?= $session->getId() ?>">✎</button>
                         <button class="btn-delete"><a href="index.php?accion=deleteSession&id=<?= $session->getId() ?>" class="link__btn-delete">×</a></button>
-                        <img src="web/trainingPhoto/pesas.jpg" alt="" class="img__allTraining">
+                        <img src="<?= $session->getSessionPhoto() ?>" alt="" class="img__allTraining">
                         <div class="card-content__allTraining">
                             <h2 class="title__allTraining"><?= $session->getType() ?></h2>
-                            <p class="text__allTraining">
-                                <?= $session->getDescription() ?>
-                            </p>
-                            <a href="" class="link__allTraining">
-                                MOSTRAR EJERCICIOS
-                            </a>
+                            <p class="text__allTraining"><?= $session->getDescription() ?></p>
+                            <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
                         </div>
                     </div>
-
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop-<?= $session->getId() ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel-<?= $session->getId() ?>" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -147,6 +142,38 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </section>
+            <section class="section__addSession">
+                <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    AÑADIR NUEVA SESIÓN DE ENTRENAMIENTO
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LOS DATOS</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="index.php?accion=registerSession" method="POST" class="form__addTraining" enctype="multipart/form-data">
+                                    <label for="type" class="label__addTraining">TIPO SESIÓN</label>
+                                    <input type="text" name="type" class="input__addTraining">
+
+                                    <label for="description" class="label__addTraining">DESCRIPCIÓN</label>
+                                    <textarea name="description" class="textarea__addTraining"></textarea>
+
+                                    <label for="sessionPhoto" class="label__addTraining">PRESENTACIÓN</label>
+                                    <input type="file" name="sessionPhoto[]" multiple class="input__addTraining">
+                                    
+                                    <div class="modal-footer">
+                                        <input type="submit" value="GUARDAR" class="button__addTraining">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         <?php elseif ($_SESSION['rol'] == 'CLIENTE') : ?>
             <!-- Código si el usuario introducido pertenece a cliente -->

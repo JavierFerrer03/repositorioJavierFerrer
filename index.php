@@ -29,6 +29,7 @@ $mapa = array(
     'editTraining'=>array('controlador'=>'ControladorEntrenamientos','metodo'=>'editTraining'),
     'inicioSession'=>array('controlador'=>'ControladorSesion','metodo'=>'inicioSession'),
     'editSession'=>array('controlador'=>'ControladorSesion','metodo'=>'editSession'),
+    'registerSession'=>array('controlador'=>'ControladorSesion','metodo'=>'registerSession'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio
