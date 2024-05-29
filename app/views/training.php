@@ -261,14 +261,14 @@
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
                     <?php foreach ($trainings as $training) : ?>
                         <div class="card__allTraining">
-                            <img src="web/trainingPhoto/pesas.jpg" alt="" class="img__allTraining">
+                            <img src="<?= $training->getTrainingPhoto() ?>" alt="" class="img__allTraining">
                             <div class="card-content__allTraining">
                                 <h2 class="title__allTraining"><?= $training->getName() ?></h2>
                                 <p class="text__allTraining">
                                     <?= $training->getDescription() ?>
                                 </p>
-                                <a href="#" class="link__allTraining">
-                                    Find out more
+                                <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">
+                                    VER EJERCICIOS
                                 </a>
                             </div>
                         </div>

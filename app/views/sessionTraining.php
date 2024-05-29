@@ -165,7 +165,7 @@
 
                                     <label for="sessionPhoto" class="label__addTraining">PRESENTACIÓN</label>
                                     <input type="file" name="sessionPhoto[]" multiple class="input__addTraining">
-                                    
+
                                     <div class="modal-footer">
                                         <input type="submit" value="GUARDAR" class="button__addTraining">
                                     </div>
@@ -177,6 +177,16 @@
             </section>
         <?php elseif ($_SESSION['rol'] == 'CLIENTE') : ?>
             <!-- Código si el usuario introducido pertenece a cliente -->
+            <?php foreach ($sessions as $session) : ?>
+                <div class="card__allTraining">
+                    <img src="<?= $session->getSessionPhoto() ?>" alt="" class="img__allTraining">
+                    <div class="card-content__allTraining">
+                        <h2 class="title__allTraining"><?= $session->getType() ?></h2>
+                        <p class="text__allTraining"><?= $session->getDescription() ?></p>
+                        <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         <?php endif; ?>
     </main>
     <footer class="bg-dark text-white py-4 mt-auto border-top">
