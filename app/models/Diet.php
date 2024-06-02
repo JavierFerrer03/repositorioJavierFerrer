@@ -9,7 +9,7 @@ class Diet{
     private $calories;
     private $protein;
     private $carbohydrates;
-    private $facts;
+    private $fats;
     private $idUser;
 
     /**
@@ -177,17 +177,17 @@ class Diet{
     /**
      * Get the value of facts
      */
-    public function getFacts()
+    public function getFats()
     {
-        return $this->facts;
+        return $this->fats;
     }
 
     /**
      * Set the value of facts
      */
-    public function setFacts($facts): self
+    public function setFats($fats): self
     {
-        $this->facts = $facts;
+        $this->fats = $fats;
 
         return $this;
     }

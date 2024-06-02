@@ -150,6 +150,15 @@
                                         <label for="calories" class="label__addTraining">CALORÍAS</label>
                                         <input type="text" name="calories" multiple class="input__addTraining">
 
+                                        <label for="protein" class="label__addTraining">PROTEÍNAS</label>
+                                        <input type="text" name="protein" multiple class="input__addTraining">
+
+                                        <label for="carbohydrates" class="label__addTraining">CARBOHIDRATOS</label>
+                                        <input type="text" name="carbohydrates" multiple class="input__addTraining">
+
+                                        <label for="fats" class="label__addTraining">GRASAS</label>
+                                        <input type="text" name="fats" multiple class="input__addTraining">
+
                                         <div class="modal-footer">
                                             <input type="submit" value="GUARDAR" class="button__addTraining">
                                         </div>
