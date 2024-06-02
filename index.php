@@ -3,6 +3,7 @@ require_once ('app/controllers/ControladorInicio.php');
 require_once ('app/controllers/ControladorUsuarios.php');
 require_once ('app/controllers/ControladorEntrenamientos.php');
 require_once ('app/controllers/ControladorSesion.php');
+require_once ('app/controllers/ControladorDietas.php');
 require_once ('app/config/config.php');
 require_once ('app/models/ConexionDB.php');
 require_once ('app/models/User.php');
@@ -11,6 +12,8 @@ require_once ('app/models/Training.php');
 require_once ('app/models/TrainingDAO.php');
 require_once ('app/models/Session.php');
 require_once ('app/models/SessionDAO.php');
+require_once ('app/models/Diet.php');
+require_once ('app/models/DietDAO.php');
 
 session_start();
 
@@ -30,6 +33,9 @@ $mapa = array(
     'inicioSession'=>array('controlador'=>'ControladorSesion','metodo'=>'inicioSession'),
     'editSession'=>array('controlador'=>'ControladorSesion','metodo'=>'editSession'),
     'registerSession'=>array('controlador'=>'ControladorSesion','metodo'=>'registerSession'),
+    'inicioDiets'=>array('controlador'=>'ControladorDietas','metodo'=>'inicioDiets'),
+    'logMeal'=>array('controlador'=>'ControladorDietas','metodo'=>'logMeal'),
+    'getAccumulatedData'=>array('controlador'=>'ControladorDietas','metodo'=>'getAccumulatedData'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio

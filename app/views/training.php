@@ -109,8 +109,8 @@
                 </div>
             </section>
             <section class="section__testimonials py-5">
-                <div class="container">
-                    <h2 class="text-center mb-4">Testimonios de nuestros usuarios</h2>
+                <div class="container-swiper">
+                    <h2 class="text-center">Testimonios de nuestros usuarios</h2>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
@@ -201,7 +201,7 @@
                         <?php endforeach; ?>
                     </div>
                 </section>
-                <section class="section__addTraining">
+                <section class="section__add">
                     <!-- Sección para añadir una nueva rutina a mi página web -->
                     <!-- Button trigger modal -->
                     <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -257,22 +257,25 @@
                 </section>
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
+                <h1 class="main__title border-bottom">RUTINAS DE ENTRENAMIENTO</h1>
                 <section class="section__allTrainings">
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
-                    <?php foreach ($trainings as $training) : ?>
-                        <div class="card__allTraining">
-                            <img src="<?= $training->getTrainingPhoto() ?>" alt="" class="img__allTraining">
-                            <div class="card-content__allTraining">
-                                <h2 class="title__allTraining"><?= $training->getName() ?></h2>
-                                <p class="text__allTraining">
-                                    <?= $training->getDescription() ?>
-                                </p>
-                                <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">
-                                    VER EJERCICIOS
-                                </a>
+                    <div class="row">
+                        <?php foreach ($trainings as $training) : ?>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
+                                <div class="card__allTraining">
+                                    <img src=<?= $training->getTrainingPhoto() ?> alt="Imagen de pesas" class="img__allTraining">
+                                    <div class="card-content__allTraining">
+                                        <h2 class="title__allTraining"><?= $training->getName() ?></h2>
+                                        <p class="text__allTraining"><?= $training->getDescription() ?></p>
+                                        <p class="text__allTraining">Dificultad: <?= $training->getDifficultyLevel() ?></p>
+                                        <p class="text__allTraining">Tiempo: <?= $training->getDuration() ?></p>
+                                        <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">MOSTRAR EJERCICIOS</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </section>
             <?php endif; ?>
         <?php endif; ?>

@@ -452,14 +452,14 @@
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    background: #f9f9f9;
+    background: #1b1d20;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 16px #33C490;
 }
 
 .testimonial p {
     font-size: 1.2rem;
-    color: #333;
+    color: #fff;
     margin-bottom: 10px;
     line-height: 1.6;
     font-style: italic;
@@ -468,7 +468,7 @@
 .testimonial h5 {
     margin-top: 10px;
     font-size: 1.3rem;
-    color: #007bff;
+    color: #33C490;
     font-weight: bold;
 }
 
@@ -500,15 +500,13 @@
 }
 
 .section__testimonials {
-    background-color: #fff;
+    background-color: #212529;
     padding: 50px 0;
-    border-top: 2px solid #eee;
-    border-bottom: 2px solid #eee;
 }
 
 .section__testimonials h2 {
     font-size: 2.5rem;
-    color: #333;
+    color: #33C490;
     margin-bottom: 30px;
     font-weight: bold;
     text-transform: uppercase;
@@ -755,7 +753,7 @@ ul {
 }
 
 /* Style for the page training routines */
-.section__addTraining {
+.section__add {
     text-align: center;
     margin-top: 60px;
     margin-bottom: 80px;
@@ -883,6 +881,10 @@ ul {
 }
 
 /* Estilo CSS para la tarjeta */
+.session__image{
+    width: 100%;
+}
+
 .section__cardLogin {
     display: flex;
     justify-content: center;
@@ -1137,4 +1139,46 @@ ul {
     text-decoration: none;
     font-size: 1.3rem;
     color: #212529;
+}
+
+/* Styles for the diets page */
+.section__imageDiets {
+    position: relative;
+    color: white;
+}
+
+.image__diets {
+    width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+}
+
+.section__infoDiets {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.section__infoDiets h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-align: center;
+    color: #33C490;
+}
+
+.section__infoDiets p {
+    font-size: 1.2rem;
+}
+
+.section__canvas{
+    width: 400px;
+    margin: 10px auto;
+}
+
+#nutrition-chart {
+    width: 100% !important; /* For responsiveness */
+    height: auto !important; /* For responsiveness */
+    max-width: 400px; /* Max width of the canvas */
+    max-height: 400px; /* Max height of the canvas */
 }

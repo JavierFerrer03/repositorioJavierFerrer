@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
@@ -39,19 +38,41 @@
                         <button class="button__login"><a href="index.php?accion=login" class="link__login">Iniciar Sesión</a></button>
                     </div>
                 <?php else : ?>
-                    <div class="login__user">
-                        <i class="fa-solid fa-user icon__user"></i>
-                        <h4 class="user__name"><?= $_SESSION['username'] ?></h4>
+                    <div class="dropdown login__user">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user icon__user"></i>
+                            <?= $_SESSION['username'] ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
+                            <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
+                                <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
+                            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
+                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                            <?php endif; ?>
+                            <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
+                        </ul>
                     </div>
                 <?php endif; ?>
             </div>
         </nav>
     </header>
     <main class="main">
-        <!-- Aqui ira una imagen sobre las sesiones de entrenamiento -->
-        <img src="web/images/session.webp" alt="" class="session__image">
+        <section class="section__imageDiets py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <img src="web/images/fondoDietas.png" alt="" class="img-fluid image__diets">
+                    </div>
+                    <div class="col-lg-6 section__infoDiets">
+                        <h2 class="border-bottom">BIENVENIDOS A LA SECCIÓN DE DIETAS</h2>
+                        <p>En esta sección encontrarás diversas dietas recomendadas por expertos para ayudarte a alcanzar tus objetivos de salud y bienestar. Ya sea que busques ganar masa muscular, perder peso, o simplemente mantener una alimentación equilibrada, aquí podrás encontrar planes dietéticos adaptados a tus necesidades. Además, podrás registrar tus comidas diarias, calcular las calorías y macronutrientes ingeridos, y llevar un seguimiento detallado de tu progreso.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <?php if (!isset($_COOKIE['sid']) || !isset($_SESSION['username'])) : ?>
-            <!-- Código para cuando el usuario no ha iniciado sesión -->
+            <!-- Código perteneciente si no se ha iniciado sesión -->
             <h1 class="main__title mt-5 border-bottom">BIENVENIDO A HEALTHMASTERY</h1>
             <section class="section__cardLogin">
                 <div class="custom-card">
@@ -68,8 +89,8 @@
                 </div>
             </section>
             <section class="section__testimonials py-5">
-                <div class="container">
-                    <h2 class="text-center mb-4">Testimonios de nuestros usuarios</h2>
+                <div class="container-swiper">
+                    <h2 class="text-center">Testimonios de nuestros usuarios</h2>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
@@ -99,98 +120,78 @@
                     </div>
                 </div>
             </section>
-        <?php elseif ($_SESSION['rol'] == 'ADMIN') : ?>
-            <h1 class="main__title border-bottom">SESIONES DE ENTRENAMIENTO</h1>
-            <section class="section__allSession">
-                <?php foreach ($sessions as $session) : ?>
-                    <div class="card__allTraining">
-                        <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop-<?= $session->getId() ?>">✎</button>
-                        <button class="btn-delete"><a href="index.php?accion=deleteSession&id=<?= $session->getId() ?>" class="link__btn-delete">×</a></button>
-                        <img src="<?= $session->getSessionPhoto() ?>" alt="" class="img__allTraining">
-                        <div class="card-content__allTraining">
-                            <h2 class="title__allTraining"><?= $session->getType() ?></h2>
-                            <p class="text__allTraining"><?= $session->getDescription() ?></p>
-                            <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
-                        </div>
-                    </div>
+        <?php else : ?>
+            <h1 class="main__title border-bottom">DIETAS SALUDABLES</h1>
+            <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
+                <!-- Código pertenenciente si el usuario es administrador -->
+                <section class="section__add">
+                    <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        AÑADIR NUEVA DIETA
+                    </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop-<?= $session->getId() ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel-<?= $session->getId() ?>" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel-<?= $session->getId() ?>">Editar Sesión</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LOS DATOS</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- Aquí puedes añadir el formulario de edición de sesión -->
-                                    <form action="index.php?accion=editSession&id=<?= $session->getId() ?>" method="POST">
-                                        <div class="mb-3">
-                                            <input type="hidden" name="idTraining" value="<?= $session->getIdTraining() ?>">
-                                            <label for="sessionType-<?= $session->getId() ?>" class="form-label">Tipo de Sesión</label>
-                                            <input type="text" class="form-control" id="sessionType-<?= $session->getId() ?>" name="type" value="<?= $session->getType() ?>">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="sessionDescription-<?= $session->getId() ?>" class="form-label">Descripción</label>
-                                            <textarea class="form-control" id="sessionDescription-<?= $session->getId() ?>" name="description"><?= $session->getDescription() ?></textarea>
-                                        </div>
+                                    <form action="index.php?accion=registerDiet" method="POST" class="form__addTraining" enctype="multipart/form-data">
+                                        <label for="name" class="label__addTraining">NOMBRE</label>
+                                        <input type="text" name="name" class="input__addTraining">
+
+                                        <label for="description" class="label__addTraining">DESCRIPCIÓN</label>
+                                        <textarea name="description" class="textarea__addTraining"></textarea>
+
+                                        <label for="goal" class="label__addTraining">GOAL</label>
+                                        <input type="text" name="goal" multiple class="input__addTraining">
+
+                                        <label for="calories" class="label__addTraining">CALORÍAS</label>
+                                        <input type="text" name="calories" multiple class="input__addTraining">
+
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                            <input type="submit" value="GUARDAR" class="button__addTraining">
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </section>
-            <section class="section__addSession">
-                <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    AÑADIR NUEVA SESIÓN DE ENTRENAMIENTO
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LOS DATOS</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </section>
+            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
+                <!-- Código perteneciente si el usuario es cliente -->
+                <section class="section__allDiets">
+
+                </section>
+                <section class="section__meal-log py-5 d-flex justify-content-center">
+                    <div class="container">
+                        <h2 class="text-center border-bottom main__title">REGISTRO DIARIO DE COMIDAS</h2>
+                        <form id="meal-log-form">
+                            <div class="form-group">
+                                <label for="meal-type">Tipo de Comida:</label>
+                                <select id="meal-type" name="meal-type" class="form-control" required>
+                                    <option value="desayuno">Desayuno</option>
+                                    <option value="almuerzo">Almuerzo</option>
+                                    <option value="cena">Cena</option>
+                                </select>
                             </div>
-                            <div class="modal-body">
-                                <form action="index.php?accion=registerSession" method="POST" class="form__addTraining" enctype="multipart/form-data">
-                                    <label for="type" class="label__addTraining">TIPO SESIÓN</label>
-                                    <input type="text" name="type" class="input__addTraining">
-
-                                    <label for="description" class="label__addTraining">DESCRIPCIÓN</label>
-                                    <textarea name="description" class="textarea__addTraining"></textarea>
-
-                                    <label for="sessionPhoto" class="label__addTraining">PRESENTACIÓN</label>
-                                    <input type="file" name="sessionPhoto[]" multiple class="input__addTraining">
-
-                                    <div class="modal-footer">
-                                        <input type="submit" value="GUARDAR" class="button__addTraining">
-                                    </div>
-                                </form>
+                            <div class="form-group">
+                                <label for="food">Alimento:</label>
+                                <input type="text" id="food" name="food" class="form-control" required>
                             </div>
+                            <div class="form-group">
+                                <label for="quantity">Cantidad (gramos):</label>
+                                <input type="number" id="quantity" name="quantity" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Añadir Comida</button>
+                        </form>
+                        <div class="section__canvas">
+                            <canvas id="nutrition-chart" class="text-center"></canvas>
                         </div>
                     </div>
-                </div>
-            </section>
-        <?php elseif ($_SESSION['rol'] == 'CLIENTE') : ?>
-            <!-- Código si el usuario introducido pertenece a cliente -->
-            <h1 class="main__title border-bottom">SESIONES DE ENTRENAMIENTO</h1>
-            <section class="section__allSession">
-                <?php foreach ($sessions as $session) : ?>
-                    <div class="card__allTraining">
-                        <img src="<?= $session->getSessionPhoto() ?>" alt="" class="img__allTraining">
-                        <div class="card-content__allTraining">
-                            <h2 class="title__allTraining"><?= $session->getType() ?></h2>
-                            <p class="text__allTraining"><?= $session->getDescription() ?></p>
-                            <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </section>
+                </section>
+            <?php endif; ?>
         <?php endif; ?>
     </main>
     <footer class="bg-dark text-white py-4 mt-auto border-top">
@@ -218,7 +219,7 @@
                 <div class="col-md-4 mb-3">
                     <h5>Contacto</h5>
                     <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@healthmastery.com</p>
-                    <p class="mb-1"><i class="fas fa-phone me-2"></i>+34 123 456 789</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>+34 603 435 249</p>
                     <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Calle Ejemplo, 123, Madrid, España</p>
                 </div>
             </div>
@@ -232,6 +233,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="web/js/js.js"></script>
     <script src="web/js/swiper.js"></script>
 </body>
