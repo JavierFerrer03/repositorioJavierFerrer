@@ -36,6 +36,7 @@ $mapa = array(
     'inicioDiets'=>array('controlador'=>'ControladorDietas','metodo'=>'inicioDiets'),
     'logMeal'=>array('controlador'=>'ControladorDietas','metodo'=>'logMeal'),
     'getAccumulatedData'=>array('controlador'=>'ControladorDietas','metodo'=>'getAccumulatedData'),
+    'registerDiet'=>array('controlador'=>'ControladorDietas','metodo'=>'registerDiet'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio

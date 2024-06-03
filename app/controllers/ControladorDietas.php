@@ -1,6 +1,11 @@
 <?php
 class ControladorDietas{
     public function inicioDiets(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $dietDAO = new DietDAO($conn);
+        $diets = $dietDAO->getAllDiets();
         require 'app/views/diets.php';
     }
 
@@ -105,6 +110,39 @@ class ControladorDietas{
     
         $stmt->close();
         $conn->close();
-    }    
-    
+    }
+
+    public function registerDiet(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $name = htmlentities($_POST['name']);
+            $description = htmlentities($_POST['description']);
+            $goal = htmlentities($_POST['goal']);
+            $restrictions = htmlentities($_POST['restrictions']);
+            $calories = htmlentities($_POST['calories']);
+            $protein = htmlentities($_POST['protein']);
+            $carbohydrates = htmlentities($_POST['carbohydrates']);
+            $fats = htmlentities($_POST['fats']);
+
+            $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+            $conn = $conexionDB->getConexion();
+
+            $dietDAO = new DietDAO($conn);
+            $diet = new Diet();
+
+            $diet->setName($name);
+            $diet->setDescription($description);
+            $diet->setGoal($goal);
+            $diet->setRestrictions($restrictions);
+            $diet->setCalories($calories);
+            $diet->setProtein($protein);
+            $diet->setCarbohydrates($carbohydrates);
+            $diet->setFats($fats);
+            $diet->setIdUser($_SESSION['idUser']);
+
+            if($dietDAO->insertDiet($diet)){
+                header('location: index.php?accion=inicioDiets');
+                die();
+            }
+        }
+    }
 }

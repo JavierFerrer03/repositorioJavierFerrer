@@ -124,6 +124,22 @@
             <h1 class="main__title border-bottom">DIETAS SALUDABLES</h1>
             <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
+                <section class="section__allDiets">
+                    <?php foreach ($diets as $diet) : ?>
+                        <div class="card-container-diet">
+                            <div class="card-diet">
+                                <div class="front-content-diet">
+                                    <p><?= $diet->getName() ?></p>
+                                </div>
+                                <div class="content-diet">
+                                    <p class="heading-diet"><?= $diet->getName() ?></p>
+                                    <p><?= $diet->getDescription() ?></p>
+                                    <p>CALORÍAS: <?= $diet->getCalories() ?> KCL</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </section>
                 <section class="section__add">
                     <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         AÑADIR NUEVA DIETA
@@ -137,7 +153,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="index.php?accion=registerDiet" method="POST" class="form__addTraining" enctype="multipart/form-data">
+                                    <form action="index.php?accion=registerDiet" method="POST" class="form__addTraining">
                                         <label for="name" class="label__addTraining">NOMBRE</label>
                                         <input type="text" name="name" class="input__addTraining">
 
@@ -145,19 +161,22 @@
                                         <textarea name="description" class="textarea__addTraining"></textarea>
 
                                         <label for="goal" class="label__addTraining">GOAL</label>
-                                        <input type="text" name="goal" multiple class="input__addTraining">
+                                        <input type="text" name="goal" class="input__addTraining">
+
+                                        <label for="restrictions" class="label__addTraining">RESTRINCIONES</label>
+                                        <input type="text" name="restrictions" class="input__addTraining">
 
                                         <label for="calories" class="label__addTraining">CALORÍAS</label>
-                                        <input type="text" name="calories" multiple class="input__addTraining">
+                                        <input type="text" name="calories" class="input__addTraining">
 
                                         <label for="protein" class="label__addTraining">PROTEÍNAS</label>
-                                        <input type="text" name="protein" multiple class="input__addTraining">
+                                        <input type="text" name="protein" class="input__addTraining">
 
                                         <label for="carbohydrates" class="label__addTraining">CARBOHIDRATOS</label>
-                                        <input type="text" name="carbohydrates" multiple class="input__addTraining">
+                                        <input type="text" name="carbohydrates" class="input__addTraining">
 
                                         <label for="fats" class="label__addTraining">GRASAS</label>
-                                        <input type="text" name="fats" multiple class="input__addTraining">
+                                        <input type="text" name="fats" class="input__addTraining">
 
                                         <div class="modal-footer">
                                             <input type="submit" value="GUARDAR" class="button__addTraining">
