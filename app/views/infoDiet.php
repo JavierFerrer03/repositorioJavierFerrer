@@ -121,132 +121,79 @@
                 </div>
             </section>
         <?php else : ?>
-            <h1 class="main__title border-bottom">DIETAS SALUDABLES</h1>
-            <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
+            <h1 class="main__title border-bottom"></h1>
+            <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
-                <section class="section__allDiets mt-5">
-                    <div class="container">
-                        <div class="row">
-                            <?php foreach ($diets as $diet) : ?>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
-                                    <div class="card-container-diet">
-                                        <div class="card-diet">
-                                            <div class="front-content-diet">
-                                                <p><?= $diet->getName() ?></p>
-                                            </div>
-                                            <div class="content-diet">
-                                                <p class="heading-diet"><?= $diet->getName() ?></p>
-                                                <p><?= $diet->getDescription() ?></p>
-                                                <p>BENEFICIOS: <?= $diet->getGoal() ?></p>
-                                                <a href="index.php?accion=infoDiet&id=<?= $diet->getId() ?>" class="link__diets">Más información</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </section>
-                <section class="section__add">
-                    <button type="button" class="button__addTraining" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        AÑADIR NUEVA DIETA
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LOS DATOS</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="index.php?accion=registerDiet" method="POST" class="form__addTraining">
-                                        <label for="name" class="label__addTraining">NOMBRE</label>
-                                        <input type="text" name="name" class="input__addTraining">
 
-                                        <label for="description" class="label__addTraining">DESCRIPCIÓN</label>
-                                        <textarea name="description" class="textarea__addTraining"></textarea>
-
-                                        <label for="goal" class="label__addTraining">GOAL</label>
-                                        <input type="text" name="goal" class="input__addTraining">
-
-                                        <label for="restrictions" class="label__addTraining">RESTRINCIONES</label>
-                                        <input type="text" name="restrictions" class="input__addTraining">
-
-                                        <label for="calories" class="label__addTraining">CALORÍAS</label>
-                                        <input type="text" name="calories" class="input__addTraining">
-
-                                        <label for="protein" class="label__addTraining">PROTEÍNAS</label>
-                                        <input type="text" name="protein" class="input__addTraining">
-
-                                        <label for="carbohydrates" class="label__addTraining">CARBOHIDRATOS</label>
-                                        <input type="text" name="carbohydrates" class="input__addTraining">
-
-                                        <label for="fats" class="label__addTraining">GRASAS</label>
-                                        <input type="text" name="fats" class="input__addTraining">
-
-                                        <div class="modal-footer">
-                                            <input type="submit" value="GUARDAR" class="button__addTraining">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
-                <section class="section__allDiets mt-5">
-                    <div class="container">
-                        <div class="row">
-                            <?php foreach ($diets as $diet) : ?>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
-                                    <div class="card-container-diet">
-                                        <div class="card-diet">
-                                            <div class="front-content-diet">
-                                                <p><?= $diet->getName() ?></p>
-                                            </div>
-                                            <div class="content-diet">
-                                                <p class="heading-diet"><?= $diet->getName() ?></p>
-                                                <p><?= $diet->getDescription() ?></p>
-                                                <p>BENEFICIOS: <?= $diet->getGoal() ?></p>
-                                                <a href="index.php?accion=infoDiet&id=<?= $diet->getId() ?>" class="link__diets">Más información</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+                <section class="">
+
                 </section>
-                <section class="section__meal-log py-5 d-flex justify-content-center mt-5">
-                    <div class="container">
-                        <h2 class="text-center border-bottom main__title">REGISTRO DIARIO DE COMIDAS</h2>
-                        <form id="meal-log-form" class="form__diet mt-5">
-                            <div class="form-group">
-                                <label for="meal-type" class="label__diet">Tipo de Comida:</label> <br>
-                                <select id="meal-type" name="meal-type" class="select__diet" required>
-                                    <option value="desayuno" class="option__diet">Desayuno</option>
-                                    <option value="almuerzo" class="option__diet">Almuerzo</option>
-                                    <option value="cena" class="option__diet">Cena</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="food" class="label__diet">Alimento:</label><br>
-                                <input type="text" id="food" name="food" class="input__diet" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="quantity" class="label__diet">Cantidad (gramos):</label> <br>
-                                <input type="number" id="quantity" name="quantity" class="input__diet" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="button__login btn-diet">Añadir Comida</button>
-                            </div>
-                        </form>
-                        <div class="section__canvas">
-                            <canvas id="nutrition-chart" class="text-center"></canvas>
-                        </div>
-                    </div>
+                <section class="section__table">
+                    <h1 class="main__title">SEGUIMIENTO DE ALIMENTACIÓN DIARIA</h1>
+                    <table class="table__infoDiet table-responsive">
+                        <tr>
+                            <th></th>
+                            <th>LUNES</th>
+                            <th>MARTES</th>
+                            <th>MIÉRCOLES</th>
+                            <th>JUEVES</th>
+                            <th>VIERNES</th>
+                            <th>SÁBADO</th>
+                            <th>DOMINGO</th>
+                        </tr>
+                        <tr>
+                            <td>DESAYUNO</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
+                        </tr>
+                        <tr>
+                            <td>MEDIA MAÑANA</td>
+                            <td>Yogur desnatado. Fruta</td>
+                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
+                            <td>Yogur desnatado. Fruta</td>
+                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
+                            <td>Yogur desnatado. Fruta</td>
+                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
+                            <td>Yogur desnatado. Fruta</td>
+                        </tr>
+                        <tr>
+                            <td>COMIDA</td>
+                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
+                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
+                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
+                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
+                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
+                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
+                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
+                        </tr>
+                        <tr>
+                            <td>MERIENDA</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                            <td>Frutos secos tostados sin sal.</td>
+                        </tr>
+                        <tr>
+                            <td>CENA</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
+                        </tr>
+                    </table>
                 </section>
             <?php endif; ?>
         <?php endif; ?>

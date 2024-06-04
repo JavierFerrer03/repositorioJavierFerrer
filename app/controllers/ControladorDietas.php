@@ -145,4 +145,16 @@ class ControladorDietas{
             }
         }
     }
+
+    public function infoDiet(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $idDiet = htmlentities($_GET['id']);
+
+        $dietDAO = new DietDAO($conn);
+        $diet = $dietDAO->getById($idDiet);
+
+        require 'app/views/infoDiet.php';
+    }
 }

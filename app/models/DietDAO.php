@@ -47,4 +47,22 @@ class DietDAO{
         }
         return $array_diets;
     }
+
+    public function getById($id){
+        if(!$stmt = $this->conn->prepare("SELECT * FROM diet WHERE id = ?"))
+        {
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        if($result->num_rows >= 1){
+            $diet = $result->fetch_object(Diet::class);
+            return $diet;
+        }else{
+            return null;
+        }
+    }
 }
