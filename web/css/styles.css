@@ -1161,11 +1161,6 @@ ul {
 }
 
 /* Styles for the diets page */
-.section__imageDiets {
-    position: relative;
-    color: white;
-}
-
 .image__diets {
     width: 100%;
     height: auto;
@@ -1340,10 +1335,30 @@ ul {
 }
 
 /* Style for the infoDiet page */
+.overlay-diet{
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
 .table__infoDiet{
     color: #00fd8f;
     border: 1px solid white;
     text-align: center;
-    margin: 20px auto;
+    width: 80%;
+    margin: 30px auto;
+    font-size: 1.3rem;
+    box-shadow: 0 2px 16px #33C490;
+}
+
+.td__text{
+    color: #fff;
+}
+
+.section__infoTable{
     width: 50%;
+    margin: 20px auto;
+}
+
+.article__presentation{
+    color: #fff;
 }

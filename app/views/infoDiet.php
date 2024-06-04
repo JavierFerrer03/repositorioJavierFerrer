@@ -16,17 +16,17 @@
     <header class="header bg-dark">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <img src="web/images/logo.png" alt="" class="imageLogo">
+                <a href="index.php?accion=inicio"><img src="web/images/logo.png" alt="" class="imageLogo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-75 justify-content-around">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Entrenamientos</a>
+                            <a class="nav-link" href="index.php?accion=inicioTraining">Entrenamientos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dietas</a>
+                            <a class="nav-link" href="index.php?accion=inicioDiets">Dietas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link">Recetas</a>
@@ -58,17 +58,14 @@
         </nav>
     </header>
     <main class="main">
-        <section class="section__imageDiets py-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <img src="web/images/fondoDietas.png" alt="" class="img-fluid image__diets">
-                    </div>
-                    <div class="col-lg-6 section__infoDiets">
-                        <h2 class="border-bottom">BIENVENIDOS A LA SECCIÓN DE DIETAS</h2>
-                        <p>En esta sección encontrarás diversas dietas recomendadas por expertos para ayudarte a alcanzar tus objetivos de salud y bienestar. Ya sea que busques ganar masa muscular, perder peso, o simplemente mantener una alimentación equilibrada, aquí podrás encontrar planes dietéticos adaptados a tus necesidades. Además, podrás registrar tus comidas diarias, calcular las calorías y macronutrientes ingeridos, y llevar un seguimiento detallado de tu progreso.</p>
-                    </div>
-                </div>
+        <section class="section__imageDiets position-relative">
+            <div class="overlay-diet position-absolute top-50 start-50 translate-middle text-center text-white p-3">
+                <h2 class="fw-bold">BIENVENIDOS A LA SECCIÓN DE DIETAS</h2>
+                <p>En esta sección encontrarás diversas dietas recomendadas por expertos para ayudarte a alcanzar tus objetivos de salud y bienestar. Ya sea que busques ganar masa muscular, perder peso, o simplemente mantener una alimentación equilibrada, aquí podrás encontrar planes dietéticos adaptados a tus necesidades.</p>
+            </div>
+            <img src="web/images/dietFondo.jpg" alt="" class="img-fluid image__diets w-100">
+            <div class="text-center bg-dark text-white py-2">
+                <h3>INFORMACIÓN SOBRE LA DIETA</h3>
             </div>
         </section>
         <?php if (!isset($_COOKIE['sid']) || !isset($_SESSION['username'])) : ?>
@@ -121,79 +118,123 @@
                 </div>
             </section>
         <?php else : ?>
-            <h1 class="main__title border-bottom"></h1>
             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
 
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
-                <section class="">
-
+                <section class="section__dietInfo py-5">
+                    <div class="container">
+                        <h1 class="main__title border-bottom text-center"><?= $diet->getName() ?></h1>
+                        <article class="article__dietInfo row">
+                            <div class="col-md-6 article__image text-center">
+                                <img src="web/images/dieta.webp" alt="" class="img-fluid image__diet">
+                            </div>
+                            <div class="col-md-6 article__presentation">
+                                <h2>Descripción</h2>
+                                <p><?= $diet->getDescription() ?></p>
+                                <h2>Beneficios</h2>
+                                <ul>
+                                    <li>Mejora tu salud cardiovascular</li>
+                                    <li>Aumenta tu energía</li>
+                                    <li>Ayuda a mantener un peso saludable</li>
+                                    <li>Fomenta hábitos alimenticios saludables</li>
+                                </ul>
+                                <h2>Restricciones</h2>
+                                <p><?= $diet->getRestrictions() ?></p>
+                                <h4 class="main__title">DATOS TOTALES DIETA</h4>
+                                <table class="text-center w-100">
+                                    <tr>
+                                        <th>CALORÍAS</th>
+                                        <th>PROTEÍNA</th>
+                                        <th>CARBOHIDRATOS</th>
+                                        <th>GRASAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td><?= $diet->getCalories() ?></td>
+                                        <td><?= $diet->getProtein() ?></td>
+                                        <td><?= $diet->getCarbohydrates() ?></td>
+                                        <td><?= $diet->getFats() ?></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
                 </section>
-                <section class="section__table">
+                <section class="section__table mt-5">
                     <h1 class="main__title">SEGUIMIENTO DE ALIMENTACIÓN DIARIA</h1>
-                    <table class="table__infoDiet table-responsive">
-                        <tr>
-                            <th></th>
-                            <th>LUNES</th>
-                            <th>MARTES</th>
-                            <th>MIÉRCOLES</th>
-                            <th>JUEVES</th>
-                            <th>VIERNES</th>
-                            <th>SÁBADO</th>
-                            <th>DOMINGO</th>
-                        </tr>
-                        <tr>
-                            <td>DESAYUNO</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                            <td>Café con leche desnatada o infusión. Tostada de pan integral con tomate y aceite de oliva. Fruta</td>
-                        </tr>
-                        <tr>
-                            <td>MEDIA MAÑANA</td>
-                            <td>Yogur desnatado. Fruta</td>
-                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
-                            <td>Yogur desnatado. Fruta</td>
-                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
-                            <td>Yogur desnatado. Fruta</td>
-                            <td>Queso fresco desnatado con 2 biscotes integrales</td>
-                            <td>Yogur desnatado. Fruta</td>
-                        </tr>
-                        <tr>
-                            <td>COMIDA</td>
-                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
-                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
-                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
-                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
-                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
-                            <td>Ensalada mixta. Conejo al ajillo. Pan integral. Fruta</td>
-                            <td>Ensalada de pimientos y tomate asados. Judías blancas con verduras. Pan integral. Fruta</td>
-                        </tr>
-                        <tr>
-                            <td>MERIENDA</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                            <td>Frutos secos tostados sin sal.</td>
-                        </tr>
-                        <tr>
-                            <td>CENA</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                            <td>Ensalada de lechuga. Revuelto de espárragos. Cuajada con miel</td>
-                        </tr>
+                    <table class="table__infoDiet table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Comida</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Calorías</th>
+                                <th scope="col">Proteínas</th>
+                                <th scope="col">Carbohidratos</th>
+                                <th scope="col">Grasas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Desayuno</td>
+                                <td class="td__text">7:00 AM</td>
+                                <td class="td__text">Avena con frutas y nueces</td>
+                                <td class="td__text">350</td>
+                                <td class="td__text">10g</td>
+                                <td class="td__text">50g</td>
+                                <td class="td__text">10g</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td class="td__text">10:00 AM</td>
+                                <td class="td__text">Yogur griego con miel</td>
+                                <td class="td__text">150</td>
+                                <td class="td__text">10g</td>
+                                <td class="td__text">15g</td>
+                                <td class="td__text">5g</td>
+                            </tr>
+                            <tr>
+                                <td>Almuerzo</td>
+                                <td class="td__text">1:00 PM</td>
+                                <td class="td__text">Ensalada de pollo con quinoa y aguacate</td>
+                                <td class="td__text">450</td>
+                                <td class="td__text">30g</td>
+                                <td class="td__text">40g</td>
+                                <td class="td__text">15g</td>
+                            </tr>
+                            <tr>
+                                <td>Snack</td>
+                                <td class="td__text">4:00 PM</td>
+                                <td class="td__text">Hummus con zanahorias y pepinos</td>
+                                <td class="td__text">200</td>
+                                <td class="td__text">5g</td>
+                                <td class="td__text">20g</td>
+                                <td class="td__text">10g</td>
+                            </tr>
+                            <tr>
+                                <td>Cena</td>
+                                <td class="td__text">7:00 PM</td>
+                                <td class="td__text">Salmón al horno con espárragos y arroz integral</td>
+                                <td class="td__text">500</td>
+                                <td class="td__text">35g</td>
+                                <td class="td__text">50g</td>
+                                <td class="td__text">20g</td>
+                            </tr>
+                            <tr>
+                                <td>Snack Nocturno</td>
+                                <td class="td__text">9:00 PM</td>
+                                <td class="td__text">Batido de proteínas con leche de almendras</td>
+                                <td class="td__text">200</td>
+                                <td class="td__text">20g</td>
+                                <td class="td__text">10g</td>
+                                <td class="td__text">8g</td>
+                            </tr>
+                        </tbody>
                     </table>
+                </section>
+                <section class="section__infoTable">
+                    <canvas id="mealChart" width="400" height="200"></canvas>
                 </section>
             <?php endif; ?>
         <?php endif; ?>
