@@ -4,6 +4,7 @@ require_once ('app/controllers/ControladorUsuarios.php');
 require_once ('app/controllers/ControladorEntrenamientos.php');
 require_once ('app/controllers/ControladorSesion.php');
 require_once ('app/controllers/ControladorDietas.php');
+require_once ('app/controllers/ControladorChat.php');
 require_once ('app/config/config.php');
 require_once ('app/models/ConexionDB.php');
 require_once ('app/models/User.php');
@@ -38,6 +39,7 @@ $mapa = array(
     'getAccumulatedData'=>array('controlador'=>'ControladorDietas','metodo'=>'getAccumulatedData'),
     'registerDiet'=>array('controlador'=>'ControladorDietas','metodo'=>'registerDiet'),
     'infoDiet'=>array('controlador'=>'ControladorDietas','metodo'=>'infoDiet'),
+    'getchat'=>array('controlador'=>'ControladorChat','metodo'=>'getchat'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio

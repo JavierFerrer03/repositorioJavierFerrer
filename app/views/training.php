@@ -255,6 +255,28 @@
                         </div>
                     </div>
                 </section>
+                <section class="section__chat">
+                    <img src="web/images/iconChat.webp" alt="" class="image__chat">
+                </section>
+                <div class="wrapper" id="chatBotWrapper">
+                    <div class="title">ChatBot ConfiguroWeb</div>
+                    <div class="form">
+                        <div class="bot-inbox inbox">
+                            <div class="icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="msg-header">
+                                <p>Hola, ¿cómo puedo ayudarte?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="typing-field">
+                        <div class="input-data">
+                            <input id="data" type="text" placeholder="Escribe algo aquí.." required>
+                            <button id="send-btn">Enviar</button>
+                        </div>
+                    </div>
+                </div>
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
                 <h1 class="main__title border-bottom">RUTINAS DE ENTRENAMIENTO</h1>
@@ -319,8 +341,9 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="web/js/js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="web/js/swiper.js"></script>
+    <script src="web/js/chat.js"></script>
 </body>
 
 </html>

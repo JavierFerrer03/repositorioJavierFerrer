@@ -1362,3 +1362,102 @@ ul {
 .article__presentation{
     color: #fff;
 }
+
+.section__chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.image__chat {
+    width: 80px;
+    cursor: pointer;
+}
+
+.wrapper {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 600px;
+    max-height: 400px;
+    background: gray;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.wrapper.show {
+    transform: scale(1);
+}
+
+.title {
+    background: #33C490;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.form {
+    padding: 10px;
+}
+
+.bot-inbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bot-inbox .icon {
+    width: 40px;
+    height: 40px;
+    background: #33C490;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.msg-header {
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.typing-field {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+.input-data {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input-data input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-data button {
+    width: 20%;
+    padding: 10px;
+    border: none;
+    background: #33C490;
+    color: #1b1d20;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
