@@ -110,7 +110,7 @@
                         <div class="card-content__allTraining">
                             <h2 class="title__allTraining"><?= $session->getType() ?></h2>
                             <p class="text__allTraining"><?= $session->getDescription() ?></p>
-                            <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
+                            <a href="index.php?accion=inicioExercise&id=<?= $session->getId() ?>" class="link__allTraining">MOSTRAR EJERCICIOS</a>
                         </div>
                     </div>
                     <!-- Modal -->
@@ -186,7 +186,7 @@
                         <div class="card-content__allTraining">
                             <h2 class="title__allTraining"><?= $session->getType() ?></h2>
                             <p class="text__allTraining"><?= $session->getDescription() ?></p>
-                            <a href="" class="link__allTraining">MOSTRAR EJERCICIOS</a>
+                            <a href="index.php?accion=inicioExercise&id=<?= $session->getId() ?>" class="link__allTraining">MOSTRAR EJERCICIOS</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

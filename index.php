@@ -5,6 +5,7 @@ require_once ('app/controllers/ControladorEntrenamientos.php');
 require_once ('app/controllers/ControladorSesion.php');
 require_once ('app/controllers/ControladorDietas.php');
 require_once ('app/controllers/ControladorChat.php');
+require_once ('app/controllers/ControladorEjercicios.php');
 require_once ('app/config/config.php');
 require_once ('app/models/ConexionDB.php');
 require_once ('app/models/User.php');
@@ -15,6 +16,8 @@ require_once ('app/models/Session.php');
 require_once ('app/models/SessionDAO.php');
 require_once ('app/models/Diet.php');
 require_once ('app/models/DietDAO.php');
+require_once ('app/models/Exercise.php');
+require_once ('app/models/ExerciseDAO.php');
 
 session_start();
 
@@ -40,6 +43,8 @@ $mapa = array(
     'registerDiet'=>array('controlador'=>'ControladorDietas','metodo'=>'registerDiet'),
     'infoDiet'=>array('controlador'=>'ControladorDietas','metodo'=>'infoDiet'),
     'getchat'=>array('controlador'=>'ControladorChat','metodo'=>'getchat'),
+    'inicioExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'inicioExercise'),
+    'insertExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'insertExercise'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio
