@@ -1461,3 +1461,17 @@ ul {
     cursor: pointer;
     margin-left: 10px;
 }
+
+.image__exercise{
+    width: 100%;
+}
+
+.iconoFavoritoOff{
+    color: white;
+    font-size: 1.3rem;
+}
+
+.iconoFavoritoOn{
+    color: red;
+    font-size: 1.3rem;
+}

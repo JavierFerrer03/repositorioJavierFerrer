@@ -5,7 +5,6 @@ class Exercise{
     private $description;
     private $repetitions;
     private $series;
-    private $duration;
     private $exercisePhoto;
     private $idSession;
 
@@ -95,24 +94,6 @@ class Exercise{
     public function setSeries($series): self
     {
         $this->series = $series;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * Set the value of id
-     */
-    public function setDuration($duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }

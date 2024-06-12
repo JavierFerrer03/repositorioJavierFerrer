@@ -6,6 +6,7 @@ require_once ('app/controllers/ControladorSesion.php');
 require_once ('app/controllers/ControladorDietas.php');
 require_once ('app/controllers/ControladorChat.php');
 require_once ('app/controllers/ControladorEjercicios.php');
+require_once ('app/controllers/ControladorFavorito.php');
 require_once ('app/config/config.php');
 require_once ('app/models/ConexionDB.php');
 require_once ('app/models/User.php');
@@ -18,6 +19,8 @@ require_once ('app/models/Diet.php');
 require_once ('app/models/DietDAO.php');
 require_once ('app/models/Exercise.php');
 require_once ('app/models/ExerciseDAO.php');
+require_once ('app/models/ExerciseFavourite.php');
+require_once ('app/models/ExerciseFavouriteDAO.php');
 
 session_start();
 
@@ -45,6 +48,8 @@ $mapa = array(
     'getchat'=>array('controlador'=>'ControladorChat','metodo'=>'getchat'),
     'inicioExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'inicioExercise'),
     'insertExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'insertExercise'),
+    'insertExerciseFavourite'=>array('controlador'=>'ControladorFavorito','metodo'=>'insertExerciseFavourite'),
+    'deleteExerciseFavourite'=>array('controlador'=>'ControladorFavorito','metodo'=>'deleteExerciseFavourite'),
 );
 
 if(isset($_GET['accion'])){ //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto inicio

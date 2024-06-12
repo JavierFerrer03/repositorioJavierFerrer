@@ -47,7 +47,7 @@
                             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                                 <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
                             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                                <li><a class="dropdown-item" href="#">Favoritos</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>

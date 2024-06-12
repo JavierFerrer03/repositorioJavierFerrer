@@ -49,7 +49,7 @@
                             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                                 <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
                             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                                <li><a class="dropdown-item" href="#">Favoritos</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>
@@ -149,9 +149,17 @@
                     <div class="row">
                         <?php foreach ($exercises as $exercise) : ?>
                             <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
-                                <div class="card__allTraining">
-                                    <!-- Tarjeta del ejercicio -->
-                                     <p class="main__title"><?= $exercise->getName() ?></p>
+                                <!-- Tarjeta del ejercicio -->
+                                <div class="exercise__card">
+                                    <div class="image-container">
+                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="" class="image__exercise">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="white"><?= $exercise->getName() ?></h3>
+                                        <p class="white"><?= $exercise->getDescription() ?></p>
+                                        <p class="white">Series: <?= $exercise->getSeries() ?></p>
+                                        <p class="white">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -181,9 +189,6 @@
 
                                         <label for="duration" class="label__addTraining">REPETICIONES</label>
                                         <input type="number" name="repetitions" class="input__addTraining">
-
-                                        <label for="duration" class="label__addTraining">DURACIÓN</label>
-                                        <input type="text" name="duration" class="input__addTraining">
 
                                         <label for="exercisePhoto" class="label__addTraining">PRESENTACIÓN</label>
                                         <input type="file" name="exercisePhoto[]" multiple class="input__addTraining">
@@ -224,20 +229,35 @@
                 </div>
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
-                <h1 class="main__title border-bottom">RUTINAS DE ENTRENAMIENTO</h1>
+                <h1 class="main__title border-bottom">EJERCICIOS DE LA SESIÓN</h1>
                 <section class="section__allTrainings">
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
                     <div class="row">
-                        <?php foreach ($trainings as $training) : ?>
+                        <?php foreach ($exercises as $exercise) : ?>
+                            <?php
+                            $exerciseFavouriteDAO = new ExerciseFavouriteDAO($conn);
+                            $idExercise = $exercise->getId();
+                            if ($_SESSION['idUser']) {
+                                $idUser = $_SESSION['idUser'];
+                                $existsFavourite = $exerciseFavouriteDAO->existByIdUserIdExercise($idUser, $idExercise);
+                            }
+                            ?>
                             <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
-                                <div class="card__allTraining">
-                                    <img src=<?= $training->getTrainingPhoto() ?> alt="Imagen de pesas" class="img__allTraining">
-                                    <div class="card-content__allTraining">
-                                        <h2 class="title__allTraining"><?= $training->getName() ?></h2>
-                                        <p class="text__allTraining"><?= $training->getDescription() ?></p>
-                                        <p class="text__allTraining">Dificultad: <?= $training->getDifficultyLevel() ?></p>
-                                        <p class="text__allTraining">Tiempo: <?= $training->getDuration() ?></p>
-                                        <a href="index.php?accion=inicioSession&id=<?= $training->getId() ?>" class="link__allTraining">MOSTRAR EJERCICIOS</a>
+                                <!-- Tarjeta del ejercicio -->
+                                <div class="exercise__card">
+                                    <div class="image-container">
+                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="" class="image__exercise">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="white"><?= $exercise->getName() ?></h3>
+                                        <p class="white"><?= $exercise->getDescription() ?></p>
+                                        <p class="white">Series: <?= $exercise->getSeries() ?></p>
+                                        <p class="white">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                        <?php if ($existsFavourite) : ?>
+                                            <i class="fa-solid fa-heart iconoFavoritoOn" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                        <?php else : ?>
+                                            <i class="fa-regular fa-heart iconoFavoritoOff" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -289,6 +309,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="web/js/swiper.js"></script>
     <script src="web/js/chat.js"></script>
+    <script src="web/js/favourite.js"></script>
 </body>
 
 </html>

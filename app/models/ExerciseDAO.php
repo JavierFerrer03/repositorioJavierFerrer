@@ -7,7 +7,7 @@ class ExerciseDAO{
     }
 
     public function insertExercise(Exercise $exercise){
-        if(!$stmt = $this->conn->prepare("INSERT INTO exercise (name, description, repetitions, series, duration, exercisePhoto, idSession) VALUES (?,?,?,?,?,?,?)"))
+        if(!$stmt = $this->conn->prepare("INSERT INTO exercise (name, description, repetitions, series, exercisePhoto, idSession) VALUES (?,?,?,?,?,?)"))
         {
             echo "Error en la SQL: " . $this->conn->error;
         }
@@ -16,11 +16,10 @@ class ExerciseDAO{
         $description = $exercise->getDescription();
         $repetitions = $exercise->getRepetitions();
         $series = $exercise->getSeries();
-        $duration = $exercise->getDuration();
         $exercisePhoto = $exercise->getExercisePhoto();
         $idSession = $exercise->getIdSession();
 
-        $stmt->bind_param('ssiissi', $name, $description, $repetitions, $series, $duration, $exercisePhoto, $idSession);
+        $stmt->bind_param('ssiisi', $name, $description, $repetitions, $series, $exercisePhoto, $idSession);
         if($stmt->execute()){
             return $stmt->insert_id;
         }else{
@@ -35,10 +34,27 @@ class ExerciseDAO{
         $stmt->bind_param('i',$idSession);
         $stmt->execute();
         $result = $stmt->get_result();
-        $exercise = array();
+        $array_exercise = array();
         while($exercise = $result->fetch_object(Exercise::class)){
-            $exercise[] = $exercise;
+            $array_exercise[] = $exercise;
         }
-        return $exercise;
+        return $array_exercise;
+    }
+
+    public function getById($id){
+        if(!$stmt = $this->conn->prepare("SELECT * FROM exercise WHERE id = ?")){
+            die("Error al ejecutar la consulta SQL " . $this->conn->error);
+        }
+
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        if($result->num_rows >= 1){
+            $exer = $result->fetch_object(Exercise::class);
+            return $exer;
+        }else{
+            return null;
+        }
     }
 }

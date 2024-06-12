@@ -3,13 +3,13 @@ class ControladorEjercicios{
     public function inicioExercise(){
         $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
         $conn = $conexionDB->getConexion();
-
+    
         $idSession = $_GET['id'];
         $_SESSION['idSession'] = $idSession;
-
+    
         $exerciseDAO = new ExerciseDAO($conn);
         $exercises = $exerciseDAO->getAllByIdSession($idSession);
-
+    
         require 'app/views/exercise.php';
     }
 
@@ -19,7 +19,6 @@ class ControladorEjercicios{
             $description = htmlentities($_POST['description']);
             $repetitions = htmlentities($_POST['repetitions']);
             $series = htmlentities($_POST['series']);
-            $duration = htmlentities($_POST['duration']);
             $exercisePhoto = $_FILES['exercisePhoto'];
 
             $fotoPaths = array();
@@ -59,13 +58,12 @@ class ControladorEjercicios{
         $exercise->setDescription($description);
         $exercise->setRepetitions($repetitions);
         $exercise->setSeries($series);
-        $exercise->setDuration($duration);
         $exercise->setIdSession($_SESSION['idSession']);
 
         if(count($fotoPaths) > 0){
             $exercise->setExercisePhoto($fotoPaths[0]);
             if($exerciseDAO->insertExercise($exercise)){
-                header('location: index.php?accion=inicioExercise');
+                header('location: index.php?accion=inicioExercise&id=' . $_SESSION['idSession']);
                 die();
             }else{
                 $error = 'No se ha podido insertar el entrenamiento';
