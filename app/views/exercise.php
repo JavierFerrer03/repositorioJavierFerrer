@@ -47,9 +47,9 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
                             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
-                                <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
+                                <li><a class="dropdown-item" href="index.php?accion=clients">Todos Clientes</a></li>
                             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                                <li><a class="dropdown-item" href="#">Favoritos</a></li>
+                                <li><a class="dropdown-item" href="index.php?accion=inicioFavourite">Favoritos</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>
@@ -143,22 +143,22 @@
         <?php else : ?>
             <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
-                <h1 class="main__title border-bottom">EJERCICIOS DE LA SESIÓN</h1>
+                <h1 class="main__title border-bottom">TODOS LOS EJERCICIOS</h1>
                 <section class="section__allTrainings">
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
                     <div class="row">
                         <?php foreach ($exercises as $exercise) : ?>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                                 <!-- Tarjeta del ejercicio -->
-                                <div class="exercise__card">
-                                    <div class="image-container">
-                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="" class="image__exercise">
-                                    </div>
-                                    <div class="card-body">
-                                        <h3 class="white"><?= $exercise->getName() ?></h3>
-                                        <p class="white"><?= $exercise->getDescription() ?></p>
-                                        <p class="white">Series: <?= $exercise->getSeries() ?></p>
-                                        <p class="white">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                <div class="package">
+                                    <div class="package2">
+                                        <button class="btn-delete"><a href="index.php?accion=deleteExercise&id=<?= $exercise->getId() ?>" class="link__btn-delete">×</a></button>
+                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                        <h3 class="main__title"><?= $exercise->getName() ?></h3>
+                                        <p class="text">Series: <?= $exercise->getSeries() ?></p>
+                                        <p class="text">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                        <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
+                                        <p class="text"><?= $exercise->getDescription() ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +205,45 @@
                         </div>
                     </div>
                 </section>
+            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
+                <!-- Código perteneciente si el usuario es cliente -->
+                <h1 class="main__title border-bottom">EJERCICIOS DE LA SESIÓN</h1>
+                <section class="section__allTrainings">
+                    <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
+                    <div class="row">
+                        <?php foreach ($exercises as $exercise) : ?>
+                            <?php
+                            $exerciseFavouriteDAO = new ExerciseFavouriteDAO($conn);
+                            $idExercise = $exercise->getId();
+                            if ($_SESSION['idUser']) {
+                                $idUser = $_SESSION['idUser'];
+                                $existsFavourite = $exerciseFavouriteDAO->existByIdUserIdExercise($idUser, $idExercise);
+                            }
+                            ?>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
+                                <!-- Tarjeta del ejercicio -->
+                                <div class="exercise__card">
+                                    <div class="package">
+                                        <div class="package2">
+                                            <button class="btn-delete"><a href="index.php?accion=deleteExercise&id=<?= $exercise->getId() ?>" class="link__btn-delete">×</a></button>
+                                            <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                            <h3 class="main__title"><?= $exercise->getName() ?></h3>
+                                            <p class="text">Series: <?= $exercise->getSeries() ?></p>
+                                            <p class="text">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                            <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
+                                            <p class="text"><?= $exercise->getDescription() ?></p>
+                                            <?php if ($existsFavourite) : ?>
+                                            <i class="fa-solid fa-heart iconoFavoritoOn" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                        <?php else : ?>
+                                            <i class="fa-regular fa-heart iconoFavoritoOff" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
                 <section class="section__chat">
                     <img src="web/images/iconChat.webp" alt="" class="image__chat">
                 </section>
@@ -227,43 +266,6 @@
                         </div>
                     </div>
                 </div>
-            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                <!-- Código perteneciente si el usuario es cliente -->
-                <h1 class="main__title border-bottom">EJERCICIOS DE LA SESIÓN</h1>
-                <section class="section__allTrainings">
-                    <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
-                    <div class="row">
-                        <?php foreach ($exercises as $exercise) : ?>
-                            <?php
-                            $exerciseFavouriteDAO = new ExerciseFavouriteDAO($conn);
-                            $idExercise = $exercise->getId();
-                            if ($_SESSION['idUser']) {
-                                $idUser = $_SESSION['idUser'];
-                                $existsFavourite = $exerciseFavouriteDAO->existByIdUserIdExercise($idUser, $idExercise);
-                            }
-                            ?>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
-                                <!-- Tarjeta del ejercicio -->
-                                <div class="exercise__card">
-                                    <div class="image-container">
-                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="" class="image__exercise">
-                                    </div>
-                                    <div class="card-body">
-                                        <h3 class="white"><?= $exercise->getName() ?></h3>
-                                        <p class="white"><?= $exercise->getDescription() ?></p>
-                                        <p class="white">Series: <?= $exercise->getSeries() ?></p>
-                                        <p class="white">Repeticiones: <?= $exercise->getRepetitions() ?></p>
-                                        <?php if ($existsFavourite) : ?>
-                                            <i class="fa-solid fa-heart iconoFavoritoOn" data-idExercise="<?= $exercise->getId() ?>"></i>
-                                        <?php else : ?>
-                                            <i class="fa-regular fa-heart iconoFavoritoOff" data-idExercise="<?= $exercise->getId() ?>"></i>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </section>
             <?php endif; ?>
         <?php endif; ?>
     </main>

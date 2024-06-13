@@ -72,4 +72,18 @@ class ControladorEjercicios{
             $error = 'Error al cargar las imagenes en la base de datos';
         }
     }
+
+    public function deleteExercise(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $exerciseDAO = new ExerciseDAO($conn);
+        $idExercise = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+        if($exerciseDAO->deleteById($idExercise)){
+            header('location: index.php?accion=inicioExercise&id=' . $_SESSION['idSession']);
+        }else{
+            $error = 'Error al eliminar el ejercicio';
+        }
+    }
 }

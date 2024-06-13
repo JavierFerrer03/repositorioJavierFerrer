@@ -1,5 +1,8 @@
 <?php
 class ControladorFavorito{
+    public function inicioFavourite(){
+        require 'app/views/favourites.php';
+    }
     public function insertExerciseFavourite(){
         $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
         $conn = $conexionDB->getConexion();
@@ -37,4 +40,5 @@ class ControladorFavorito{
             print json_encode(['respuesta'=>'error']);
         }
     }
+
 }

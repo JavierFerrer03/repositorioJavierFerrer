@@ -7,26 +7,20 @@ class ExerciseFavouriteDAO{
     }
 
     public function insertExerciseFavourite(ExerciseFavourite $favourite) {
-        // Comprobar si ya existe el registro
         if ($this->existByIdUserIdExercise($favourite->getIdExercise(), $favourite->getIdUser())) {
-            // Si existe, puedes decidir devolver un error o hacer otra cosa
             return false;
         }
     
-        // Preparar la consulta SQL
         if (!$stmt = $this->conn->prepare("INSERT INTO exercisefavourite (idExercise, idUser) VALUES (?,?)")) {
             echo "Error en la SQL: " . $this->conn->error;
-            return false; // Salir si no se pudo preparar la consulta
+            return false;
         }
-    
-        // Obtener los valores del objeto ExerciseFavourite
+
         $idExercise = $favourite->getIdExercise();
         $idUser = $favourite->getIdUser();
     
-        // Asignar los parámetros
         $stmt->bind_param('ii', $idExercise, $idUser);
     
-        // Ejecutar la consulta
         if ($stmt->execute()) {
             $favourite->setId($stmt->insert_id);
             return $stmt->insert_id;
@@ -79,6 +73,21 @@ class ExerciseFavouriteDAO{
         else{
             return false;
         }
+    }
+
+    public function getAllByIdUser($idUser){
+        if(!$stmt = $this->conn->prepare("SELECT * FROM exercisefavourite WHERE idUser = ?")){
+            die("Error al preparar la consulta delete: " . $this->conn->error );
+        }
+
+        $stmt->bind_param('i', $idUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $arrayFavouriteExercise = array();
+        while($favExercise = $result->fetch_object(ExerciseFavourite::class)){
+            $arrayFavouriteExercise[] = $favExercise;
+        }
+        return $arrayFavouriteExercise;
     }
 
 }

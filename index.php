@@ -48,6 +48,8 @@ $mapa = array(
     'getchat'=>array('controlador'=>'ControladorChat','metodo'=>'getchat'),
     'inicioExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'inicioExercise'),
     'insertExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'insertExercise'),
+    'deleteExercise'=>array('controlador'=>'ControladorEjercicios','metodo'=>'deleteExercise'),
+    'inicioFavourite'=>array('controlador'=>'ControladorFavorito','metodo'=>'inicioFavourite'),
     'insertExerciseFavourite'=>array('controlador'=>'ControladorFavorito','metodo'=>'insertExerciseFavourite'),
     'deleteExerciseFavourite'=>array('controlador'=>'ControladorFavorito','metodo'=>'deleteExerciseFavourite'),
 );
