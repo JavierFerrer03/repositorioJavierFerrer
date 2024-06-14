@@ -58,6 +58,20 @@
         </nav>
     </header>
     <main class="main">
+        <section class="section__imageSession">
+            <div id="fuerza" class="sectionCard">
+                <div class="contentCard">
+                    <h1>EJERCICIOS</h1>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div id="alimentacion" class="sectionCard">
+                <div class="contentCard">
+                    <h1>DIETAS</h1>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </section>
         <?php if (!isset($_COOKIE['sid']) || !isset($_SESSION['username'])) : ?>
             <!-- Código perteneciente si no se ha iniciado sesión -->
             <h1 class="main__title mt-5 border-bottom">BIENVENIDO A HEALTHMASTERY</h1>
@@ -108,13 +122,32 @@
                 </div>
             </section>
         <?php else : ?>
-            <h1 class="main__title border-bottom">DIETAS SALUDABLES</h1>
+            <h1 class="main__title border-bottom">FAVORITOS</h1>
             <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
                 <!-- Código pertenenciente si el usuario es administrador -->
-                
             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                 <!-- Código perteneciente si el usuario es cliente -->
-                
+                <section>
+                    <div class="row">
+                            <?php foreach($exerciseFavourites as $exerFavourite) : ?>
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
+                                <div class="exercise__card">
+                                    <div class="package">
+                                        <div class="package2">
+                                            <img src="<?= $exerFavourite->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                            <h3 class="main__title"><?= $exerFavourite->getName() ?></h3>
+                                            <p class="text">Series: <?= $exerFavourite->getSeries() ?></p>
+                                            <p class="text">Repeticiones: <?= $exerFavourite->getRepetitions() ?></p>
+                                            <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
+                                            <p class="text"><?= $exerFavourite->getDescription() ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach ; ?>
+                        </div>
+                    </div>
+                </section>
             <?php endif; ?>
         <?php endif; ?>
     </main>

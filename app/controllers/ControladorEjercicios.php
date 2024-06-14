@@ -58,6 +58,7 @@ class ControladorEjercicios{
         $exercise->setDescription($description);
         $exercise->setRepetitions($repetitions);
         $exercise->setSeries($series);
+        $exercise->setIdUser($_SESSION['idUser']);
         $exercise->setIdSession($_SESSION['idSession']);
 
         if(count($fotoPaths) > 0){

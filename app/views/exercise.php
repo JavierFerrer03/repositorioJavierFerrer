@@ -148,17 +148,21 @@
                     <!-- Aquí se mostrarán todos los entrenamientos donde se puedan editar borrar -->
                     <div class="row">
                         <?php foreach ($exercises as $exercise) : ?>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
                                 <!-- Tarjeta del ejercicio -->
-                                <div class="package">
-                                    <div class="package2">
-                                        <button class="btn-delete"><a href="index.php?accion=deleteExercise&id=<?= $exercise->getId() ?>" class="link__btn-delete">×</a></button>
-                                        <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
-                                        <h3 class="main__title"><?= $exercise->getName() ?></h3>
-                                        <p class="text">Series: <?= $exercise->getSeries() ?></p>
-                                        <p class="text">Repeticiones: <?= $exercise->getRepetitions() ?></p>
-                                        <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
-                                        <p class="text"><?= $exercise->getDescription() ?></p>
+                                <div class="exercise__card">
+                                    <div class="package">
+                                        <div class="package2">
+                                            <button class="btn-delete"><a href="index.php?accion=deleteExercise&id=<?= $exercise->getId() ?>" class="link__btn-delete">×</a></button>
+                                            <div class="imageXcercise">
+                                                <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                            </div>
+                                            <h3 class="main__title"><?= $exercise->getName() ?></h3>
+                                            <p class="text">Series: <?= $exercise->getSeries() ?></p>
+                                            <p class="text">Repeticiones: <?= $exercise->getRepetitions() ?></p>
+                                            <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
+                                            <p class="text"><?= $exercise->getDescription() ?></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,18 +229,19 @@
                                 <div class="exercise__card">
                                     <div class="package">
                                         <div class="package2">
-                                            <button class="btn-delete"><a href="index.php?accion=deleteExercise&id=<?= $exercise->getId() ?>" class="link__btn-delete">×</a></button>
-                                            <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                            <div class="imageXcercise">
+                                                <img src="<?= $exercise->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
+                                            </div>
                                             <h3 class="main__title"><?= $exercise->getName() ?></h3>
                                             <p class="text">Series: <?= $exercise->getSeries() ?></p>
                                             <p class="text">Repeticiones: <?= $exercise->getRepetitions() ?></p>
                                             <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
                                             <p class="text"><?= $exercise->getDescription() ?></p>
                                             <?php if ($existsFavourite) : ?>
-                                            <i class="fa-solid fa-heart iconoFavoritoOn" data-idExercise="<?= $exercise->getId() ?>"></i>
-                                        <?php else : ?>
-                                            <i class="fa-regular fa-heart iconoFavoritoOff" data-idExercise="<?= $exercise->getId() ?>"></i>
-                                        <?php endif; ?>
+                                                <i class="fa-solid fa-heart iconoFavoritoOn" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                            <?php else : ?>
+                                                <i class="fa-regular fa-heart iconoFavoritoOff" data-idExercise="<?= $exercise->getId() ?>"></i>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

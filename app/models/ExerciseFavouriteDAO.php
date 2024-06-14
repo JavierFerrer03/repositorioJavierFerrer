@@ -76,18 +76,31 @@ class ExerciseFavouriteDAO{
     }
 
     public function getAllByIdUser($idUser){
-        if(!$stmt = $this->conn->prepare("SELECT * FROM exercisefavourite WHERE idUser = ?")){
-            die("Error al preparar la consulta delete: " . $this->conn->error );
+        if(!$stmt = $this->conn->prepare("SELECT e.* FROM exercise e JOIN exercisefavourite ef ON e.id = ef.idExercise WHERE ef.idUser = ?")){
+            die("Error al preparar la consulta: " . $this->conn->error);
         }
-
+    
         $stmt->bind_param('i', $idUser);
         $stmt->execute();
         $result = $stmt->get_result();
         $arrayFavouriteExercise = array();
-        while($favExercise = $result->fetch_object(ExerciseFavourite::class)){
-            $arrayFavouriteExercise[] = $favExercise;
+    
+        while($favExerciseData = $result->fetch_assoc()){
+            $exercise = new Exercise();
+            $exercise->setId($favExerciseData['id']);
+            $exercise->setName($favExerciseData['name']);
+            $exercise->setDescription($favExerciseData['description']);
+            $exercise->setRepetitions($favExerciseData['repetitions']);
+            $exercise->setSeries($favExerciseData['series']);
+            $exercise->setExercisePhoto($favExerciseData['exercisePhoto']);
+            $exercise->setIdUser($favExerciseData['idUser']);
+            $exercise->setIdSession($favExerciseData['idSession']);
+    
+            $arrayFavouriteExercise[] = $exercise;
         }
+    
         return $arrayFavouriteExercise;
     }
+    
 
 }

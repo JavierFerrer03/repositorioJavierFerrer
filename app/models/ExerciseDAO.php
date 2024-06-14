@@ -7,7 +7,7 @@ class ExerciseDAO{
     }
 
     public function insertExercise(Exercise $exercise){
-        if(!$stmt = $this->conn->prepare("INSERT INTO exercise (name, description, repetitions, series, exercisePhoto, idSession) VALUES (?,?,?,?,?,?)"))
+        if(!$stmt = $this->conn->prepare("INSERT INTO exercise (name, description, repetitions, series, exercisePhoto, idUser, idSession) VALUES (?,?,?,?,?,?,?)"))
         {
             echo "Error en la SQL: " . $this->conn->error;
         }
@@ -17,9 +17,10 @@ class ExerciseDAO{
         $repetitions = $exercise->getRepetitions();
         $series = $exercise->getSeries();
         $exercisePhoto = $exercise->getExercisePhoto();
+        $idUser = $exercise->getIdUser();
         $idSession = $exercise->getIdSession();
 
-        $stmt->bind_param('ssiisi', $name, $description, $repetitions, $series, $exercisePhoto, $idSession);
+        $stmt->bind_param('ssiisii', $name, $description, $repetitions, $series, $exercisePhoto, $idUser, $idSession);
         if($stmt->execute()){
             return $stmt->insert_id;
         }else{

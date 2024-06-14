@@ -1,8 +1,16 @@
 <?php
 class ControladorFavorito{
     public function inicioFavourite(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $exerciseFavouriteDAO = new ExerciseFavouriteDAO($conn);
+        $idUser = $_SESSION['idUser'];
+        $exerciseFavourites = $exerciseFavouriteDAO->getAllByIdUser($idUser);
+
         require 'app/views/favourites.php';
     }
+
     public function insertExerciseFavourite(){
         $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
         $conn = $conexionDB->getConexion();

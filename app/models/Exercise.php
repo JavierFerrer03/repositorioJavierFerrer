@@ -6,6 +6,7 @@ class Exercise{
     private $repetitions;
     private $series;
     private $exercisePhoto;
+    private $idUser;
     private $idSession;
 
     /**
@@ -112,6 +113,24 @@ class Exercise{
     public function setExercisePhoto($exercisePhoto): self
     {
         $this->exercisePhoto = $exercisePhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setIdUser($idUser): self
+    {
+        $this->idUser = $idUser;
 
         return $this;
     }

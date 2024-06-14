@@ -44,11 +44,11 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
-                            <?php if($_SESSION['rol'] === 'ADMIN') : ?>
+                            <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                                 <li><a class="dropdown-item" href="index.php?accion=clients">Todos Clientes</a></li>
-                            <?php elseif($_SESSION['rol'] === 'CLIENTE') : ?>
+                            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
                                 <li><a class="dropdown-item" href="#">Clientillos</a></li>
-                            <?php endif ; ?>
+                            <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>
                     </div>
@@ -190,28 +190,46 @@
                 </div>
             </div>
         </section>
-        <section class="section__galery mt-5">
-            <h2 class="main__subtitle border-bottom">Transforma tu cuerpo, transforma tu vida.</h2>
-            <ul class="code">
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio.jpeg" alt="" class="image__galery">
-                </li>
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio2.jpg" alt="" class="image__galery">
-                </li>
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio3.jpg" alt="" class="image__galery">
-                </li>
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio.jpeg" alt="" class="image__galery">
-                </li>
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio2.jpg" alt="" class="image__galery">
-                </li>
-                <li tabindex="0" class="digit">
-                    <img src="web/images/cambio3.jpg" alt="" class="image__galery">
-                </li>
-            </ul>
+        <section class="section__galery">
+            <h1 class="main__title text-center border-bottom">CONOCE NUESTROS ENTRENADORES PERSONALES</h1>
+            <div class="containerTrainer">
+                <div class="cardTrainer card2">
+                    <div class="borderTrainer">
+                        <h2 class="nameTrainer">FERNANDO GARCÍA</h2>
+                        <div class="iconsTrainer">
+                            <i class="fa fa-codepen" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardTrainer card2">
+                    <div class="borderTrainer">
+                        <h2 class="nameTrainer">JESÚS PÉREZ</h2>
+                        <div class="iconsTrainer">
+                            <i class="fa fa-codepen" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardTrainer card2">
+                    <div class="borderTrainer">
+                        <h2 class="nameTrainer">MARCOS VILLANUEVA</h2>
+                        <div class="iconsTrainer">
+                            <i class="fa fa-codepen" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="bg-dark text-white py-4 mt-auto border-top">

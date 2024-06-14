@@ -527,92 +527,6 @@
     letter-spacing: 1px;
 }
 
-.section__galery {
-    display: grid;
-    gap: 4rem;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.code {
-    display: flex;
-    border-radius: 1rem;
-    overflow: hidden;
-}
-
-.code:hover {
-    cursor: grab;
-}
-
-.digit {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    padding: 5.5rem 1rem;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-}
-
-.digit:first-of-type {
-    padding-left: 5rem;
-}
-
-.digit:last-of-type {
-    padding-right: 5rem;
-}
-
-:root {
-    --lerp-0: 1;
-    --lerp-1: calc(sin(50deg));
-    --lerp-2: calc(sin(45deg));
-    --lerp-3: calc(sin(35deg));
-    --lerp-4: calc(sin(25deg));
-    --lerp-5: calc(sin(15deg));
-}
-
-.digit:is(:hover, :focus-visible) {
-    --active: var(--lerp-0);
-}
-
-.digit:is(:hover, :focus-visible)+.digit,
-.digit:has(+ .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-1);
-}
-
-.digit:is(:hover, :focus-visible)+.digit+.digit,
-.digit:has(+ .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-2);
-}
-
-.digit:is(:hover, :focus-visible)+.digit+.digit+.digit,
-.digit:has(+ .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-3);
-}
-
-.digit:is(:hover, :focus-visible)+.digit+.digit+.digit+.digit,
-.digit:has(+ .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-4);
-}
-
-.digit:is(:hover, :focus-visible)+.digit+.digit+.digit+.digit+.digit,
-.digit:has(+ .digit + .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-5);
-}
-
-.image__galery {
-    width: 250px;
-    scale: calc(var(--active, 0) + 0.5);
-    /* filter: blur(calc((1 - var(--active, 0)) * 1rem)); */
-    transition: scale calc(((1 - var(--active, 0)) + 0.2) * 1s), filter calc(((1 - var(--active, 0)) + 0.2) * 1s);
-    border-radius: 1rem;
-}
-
 .section__allTrainings {
     /* display: flex;
     justify-content: space-around; */
@@ -1053,6 +967,10 @@ ul {
     background-image: url('../images/fondoYoga.jpg');
 }
 
+#alimentacion {
+    background-image: url('../images/dietFondo.jpeg');
+}
+
 .section__allSession {
     display: flex;
     justify-content: space-around;
@@ -1280,18 +1198,18 @@ ul {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.link__diets{
+.link__diets {
     color: #fff;
     font-size: 1.3rem;
     text-decoration: none;
 }
 
-.link__diets:hover{
+.link__diets:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.form__diet{
+.form__diet {
     width: 50%;
     border: 1px solid #33C490;
     margin: 20px auto;
@@ -1300,28 +1218,28 @@ ul {
     box-shadow: 0 2px 16px #33C490;
 }
 
-.form-group{
+.form-group {
     margin: 20px;
 }
 
-.select__diet{
+.select__diet {
     background-color: #212529;
     color: #33C490;
     width: 100%;
     height: 40px;
 }
 
-.option__diet{
+.option__diet {
     color: #33C490;
     background-color: #212529;
 
 }
 
-.label__diet{
+.label__diet {
     color: #33C490;
 }
 
-.input__diet{
+.input__diet {
     width: 100%;
     background-color: #212529;
     border: none;
@@ -1329,18 +1247,18 @@ ul {
     border-bottom: 1px solid #33C490;
 }
 
-.btn-diet{
+.btn-diet {
     width: 80%;
     padding: 10px;
 }
 
 /* Style for the infoDiet page */
-.overlay-diet{
+.overlay-diet {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 }
 
-.table__infoDiet{
+.table__infoDiet {
     color: #00fd8f;
     border: 1px solid white;
     text-align: center;
@@ -1350,16 +1268,16 @@ ul {
     box-shadow: 0 2px 16px #33C490;
 }
 
-.td__text{
+.td__text {
     color: #fff;
 }
 
-.section__infoTable{
+.section__infoTable {
     width: 50%;
     margin: 20px auto;
 }
 
-.article__presentation{
+.article__presentation {
     color: #fff;
 }
 
@@ -1462,12 +1380,12 @@ ul {
     margin-left: 10px;
 }
 
-.iconoFavoritoOff{
+.iconoFavoritoOff {
     color: white;
     font-size: 1.3rem;
 }
 
-.iconoFavoritoOn{
+.iconoFavoritoOn {
     color: red;
     font-size: 1.3rem;
 }
@@ -1481,13 +1399,13 @@ ul {
     border-radius: 20px;
     text-align: center;
     transition: all 0.25s cubic-bezier(0, 0, 0, 1);
-  }
-  
-  .package:hover {
+}
+
+.package:hover {
     box-shadow: 0px 0px 30px 1px rgba(204, 0, 255, 0.3);
-  }
-  
-  .package2 {
+}
+
+.package2 {
     position: relative;
     width: 400px;
     height: 100%;
@@ -1496,18 +1414,113 @@ ul {
     transition: all 0.25s cubic-bezier(0, 0, 0, 1);
     padding: 15px;
     cursor: pointer;
-  }
-  
-  .package2:hover {
+}
+
+.package2:hover {
     transform: scale(0.98);
     border-radius: 18px;
-  }
-  
-  .text {
+}
+
+.text {
     color: white;
     font-size: 17px;
+}
+
+.image__exercise {
+    width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+}
+
+.imageXcercise {
+    height: 300px;
+}
+
+.containerTrainer {
+    height: 100vh;
+    width: 100vw;
+    max-height: 800px;
+    max-width: 1280px;
+    min-height: 600px;
+    min-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.borderTrainer{
+    height: 369px;
+    width: 290px;
+    background: transparent;
+    border-radius: 10px;
+    transition: border 1s;
+    position: relative;
+
+  &:hover{
+    border: 1px solid white;
+  }
+}
+  
+
+.cardTrainer{
+    height: 379px;
+    width: 300px;
+    background: grey;
+    border-radius: 10px;
+    transition: background 0.8s;
+    overflow: hidden;
+    background: black;
+    box-shadow: 0 70px 63px -60px #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card2{
+    background: url('https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg') center center no-repeat;
+    background-size: 300px;
+
+  &:hover{
+    background: url('https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg') left center no-repeat;
+    background-size: 600px;
   }
 
-.image__exercise{
-    width: 100%;
+    .nameTrainer{
+        opacity: 1;
+    }
+
+    .faTrainer{
+        opacity: 1;
+    }
+      
 }
+  
+
+.nameTrainer{
+    color: white;
+    margin: 20px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+  
+
+.fa{
+    opacity: 0;
+    transition: opacity 1s;
+}
+  
+.iconsTrainer{
+    position: absolute;
+    fill: #fff;
+    color: #fff;
+    height: 130px;
+    top: 226px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+  
