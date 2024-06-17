@@ -22,6 +22,7 @@
                 <input type="password" name="password" class="input__login" placeholder="***********"><br>
                 <input type="submit" class="button__login" value="INICIAR SESIÓN">
                 <p class="text__login">No tienes cuenta, <a href="index.php?accion=register" class="link__register">Regístrate</a> </p>
+                <h4 class="error__messages"><?= $error ?></h4>
             </form>
         </section>
     </main>

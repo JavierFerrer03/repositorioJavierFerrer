@@ -77,14 +77,12 @@ if(isset($_GET['accion'])){
         die();
     }
 }else{
-    $accion='inicio';   //Acción por defecto
+    $accion='inicio';
 }
 
-//$acción ya tiene la acción a ejecutar, cogemos el controlador y metodo a ejecutar del mapa
 $controlador = $mapa[$accion]['controlador'];
 $metodo = $mapa[$accion]['metodo'];
 
-//Ejecutamos el método de la clase controlador
 $objeto = new $controlador();
 $objeto->$metodo();
 ?>

@@ -4,13 +4,15 @@ class ControladorUsuarios
 
     public function login()
     {
+        $error = '';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
             $conn = $conexionDB->getConexion();
 
             $email = htmlentities($_POST['email']);
             $password = htmlentities($_POST['password']);
-            $error = '';
+            
             $userDAO = new UserDAO($conn);
 
             $user = $userDAO->getByEmail($email);

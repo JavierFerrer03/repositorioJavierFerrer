@@ -250,28 +250,6 @@
                         <?php endforeach; ?>
                     </div>
                 </section>
-                <section class="section__chat">
-                    <img src="web/images/iconChat.webp" alt="" class="image__chat">
-                </section>
-                <div class="wrapper" id="chatBotWrapper">
-                    <div class="title">ChatBot ConfiguroWeb</div>
-                    <div class="form">
-                        <div class="bot-inbox inbox">
-                            <div class="icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="msg-header">
-                                <p>Hola, ¿cómo puedo ayudarte?</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="typing-field">
-                        <div class="input-data">
-                            <input id="data" type="text" placeholder="Escribe algo aquí.." required>
-                            <button id="send-btn">Enviar</button>
-                        </div>
-                    </div>
-                </div>
             <?php endif; ?>
         <?php endif; ?>
     </main>
