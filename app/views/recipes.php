@@ -61,15 +61,15 @@
     </header>
     <main class="main">
         <section class="section__imageSession">
-            <div id="fuerza" class="sectionCard">
+            <div id="receta1" class="sectionCard">
                 <div class="contentCard">
-                    <h1>EJERCICIOS</h1>
+                    <h1>RECETAS</h1>
                 </div>
                 <div class="overlay"></div>
             </div>
-            <div id="alimentacion" class="sectionCard">
+            <div id="receta2" class="sectionCard">
                 <div class="contentCard">
-                    <h1>DIETAS</h1>
+                    <h1>SALUDABLES</h1>
                 </div>
                 <div class="overlay"></div>
             </div>
@@ -124,49 +124,124 @@
                 </div>
             </section>
         <?php else : ?>
-            <h1 class="main__title border-bottom">FAVORITOS</h1>
-            <?php if ($_SESSION['rol'] === 'ADMIN') :  ?>
-                <!-- Código pertenenciente si el usuario es administrador -->
-            <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                <!-- Código perteneciente si el usuario es cliente -->
-                <section class="section__allTrainings">
-                    <h2 class="main__title border-bottom">EJERCICIOS QUE TE GUSTAN</h2>
-                    <div class="row">
-                        <?php foreach ($exerciseFavourites as $exerFavourite) : ?>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12" style="margin: 10px auto;">
-                                <div class="exercise__card">
-                                    <div class="package">
-                                        <div class="package2">
-                                            <img src="<?= $exerFavourite->getExercisePhoto() ?>" alt="Imagen" class="image__exercise">
-                                            <h3 class="main__title"><?= $exerFavourite->getName() ?></h3>
-                                            <p class="text">Series: <?= $exerFavourite->getSeries() ?></p>
-                                            <p class="text">Repeticiones: <?= $exerFavourite->getRepetitions() ?></p>
-                                            <h5 class="text-center text border-bottom">DESCRIPCIÓN</h5>
-                                            <p class="text"><?= $exerFavourite->getDescription() ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                        <h2 class="main__title border-bottom">RECETAS QUE TE GUSTAN</h2>
-                        <?php foreach ($recipeFavourites as $recFavourite) : ?>
-                            <div class="col-12">
+            <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
+                <!-- Listado de recetas -->
+                <section class="section__recipeList py-5">
+                    <div class="container">
+                        <h2 class="main__title border-bottom">TODAS LAS RECETAS</h2>
+                        <div class="row">
+                            <?php foreach ($recipes as $recipe) : ?>
                                 <div class="recipe-card mt-4">
                                     <div class="recipe-card__img">
-                                        <img src="<?= $recFavourite->getRecipePhoto() ?>" alt="Imagen de la receta" class="recipe-card__image">
+                                        <img src="<?= $recipe->getRecipePhoto() ?>" alt="Imagen de la receta" class="recipe-card__image">
                                     </div>
                                     <div class="recipe-card__content">
-                                        <h3 class="recipe-card__title"><?= $recFavourite->getTitle() ?></h3>
-                                        <p class="recipe-card__description"><?= $recFavourite->getDescription() ?></p>
+                                        <h3 class="recipe-card__title"><?= $recipe->getTitle() ?></h3>
+                                        <p class="recipe-card__description"><?= $recipe->getDescription() ?></p>
                                         <ul class="recipe-card__details">
-                                            <li class="recipe__items"><strong>Tiempo de preparación:</strong> <?= $recFavourite->getPrepTime() ?></li>
-                                            <li class="recipe__items"><strong>Tiempo de cocinar:</strong> <?= $recFavourite->getCookTime() ?></li>
-                                            <li class="recipe__items"><strong>Dificultad:</strong> <?= $recFavourite->getDifficulty() ?></li>
+                                            <li class="recipe__items"><strong>Tiempo de preparación:</strong> <?= $recipe->getPrepTime() ?></li>
+                                            <li class="recipe__items"><strong>Tiempo de cocinar:</strong> <?= $recipe->getCookTime() ?></li>
+                                            <li class="recipe__items"><strong>Dificultad:</strong> <?= $recipe->getDifficulty() ?></li>
                                         </ul>
+                                        <button class="recipe-card__button">Ver más</button>
                                     </div>
                                 </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </section>
+            <?php endif; ?>
+            <?php if ($_SESSION['rol'] === 'CLIENTE') : ?>
+                <!-- Listado de recetas -->
+                <section class="section__recipeList py-5">
+                    <div class="container">
+                        <h2 class="main__title border-bottom">TODAS TUS PUBLICACIONES</h2>
+                        <div class="row">
+                            <?php foreach ($recipes as $recipe) : ?>
+                                <?php
+                                $recipeFavouriteDAO = new RecipeFavouriteDAO($conn);
+                                $idRecipe = $recipe->getId();
+                                if ($_SESSION['idUser']) {
+                                    $idUser = $_SESSION['idUser'];
+                                    $existsFavourite = $recipeFavouriteDAO->existByIdUserIdRecipe($idUser, $idRecipe);
+                                }
+                                ?>
+                                <div class="recipe-card mt-4">
+                                    <div class="recipe-card__img">
+                                        <img src="<?= $recipe->getRecipePhoto() ?>" alt="Imagen de la receta" class="recipe-card__image">
+                                    </div>
+                                    <div class="recipe-card__content">
+                                        <h3 class="recipe-card__title"><?= $recipe->getTitle() ?></h3>
+                                        <p class="recipe-card__description"><?= $recipe->getDescription() ?></p>
+                                        <ul class="recipe-card__details">
+                                            <li class="recipe__items"><strong>Tiempo de preparación:</strong> <?= $recipe->getPrepTime() ?></li>
+                                            <li class="recipe__items"><strong>Tiempo de cocinar:</strong> <?= $recipe->getCookTime() ?></li>
+                                            <li class="recipe__items"><strong>Dificultad:</strong> <?= $recipe->getDifficulty() ?></li>
+                                        </ul>
+                                        <button class="recipe-card__button">Ver más</button>
+                                    </div>
+                                    <div class="recipe-card__like">
+                                        <?php if ($recipe->isCreatedByUser($_SESSION['idUser'])) : ?>
+                                            <a href="index.php?accion=deleteRecipe&id=<?= $recipe->getId() ?>"><i class="fa-regular fa-circle-xmark deleteIcon"></i></a>
+                                        <?php else : ?>
+                                            <?php if ($existsFavourite) : ?>
+                                                <i class="fa-solid fa-heart iconoRecipeFavoritoOn" data-idRecipe="<?= $recipe->getId() ?>"></i>
+                                            <?php else : ?>
+                                                <i class="fa-regular fa-heart iconoRecipeFavoritoOff" data-idRecipe="<?= $recipe->getId() ?>"></i>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </section>
+                <!-- Botón para mostrar formulario de envío de recetas -->
+                <div class="text-center my-4">
+                    <button id="showRecipeFormBtn" class="button__addTraining"><i class="fas fa-plus"></i> Añadir Receta</button>
+                </div>
+                <!-- Formulario de envío de recetas -->
+                <section id="recipeFormSection" class="section__recipeForm d-none">
+                    <div class="container">
+                        <h2 class="main__title border-bottom">Comparte tu receta</h2>
+                        <form action="index.php?accion=insertRecipe" method="POST" enctype="multipart/form-data" id="recipeForm">
+                            <div class="mb-3">
+                                <label for="recipeName" class="label__diet">Nombre de la receta</label>
+                                <input type="text" class="input__diet" name="title" id="title" required>
                             </div>
-                        <?php endforeach; ?>
+                            <div class="mb-3">
+                                <label for="description" class="label__diet">Descripción</label>
+                                <textarea class="input__diet" name="description" rows="3" id="description" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ingredients" class="label__diet">Ingredientes</label>
+                                <textarea class="input__diet" name="ingredients" rows="3" id="ingredients" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prepTime" class="label__diet">Tiempo de preparación</label>
+                                <input type="text" class="input__diet" name="prepTime" id="prepTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cookTime" class="label__diet">Tiempo de cocinar</label>
+                                <input type="text" class="input__diet" name="cookTime" id="cookTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="difficulty" class="label__diet">Dificultad de la realización</label>
+                                <select name="difficulty" id="difficulty" class="input__diet">
+                                    <option value="facil" disabled selected>Dificultad</option>
+                                    <option value="facil">Fácil</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="avanzado">Avanzado</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipePhoto" class="form-label">Imagen de la receta</label>
+                                <input type="file" class="input__diet" name="recipePhoto[]" id="repicePhoto" accept="image/*" required>
+                            </div>
+                            <div class="text-center m-5">
+                                <button type="submit" class="button__addTraining" id="buttonAddRecipe">Enviar receta</button>
+                            </div>
+                        </form>
                     </div>
                 </section>
             <?php endif; ?>
@@ -211,9 +286,10 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="web/js/js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="web/js/swiper.js"></script>
+    <script src="web/js/recipe.js"></script>
+    <script src="web/js/favourite.js"></script>
 </body>
 
 </html>

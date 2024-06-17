@@ -5,8 +5,10 @@ class ControladorFavorito{
         $conn = $conexionDB->getConexion();
 
         $exerciseFavouriteDAO = new ExerciseFavouriteDAO($conn);
+        $recipeFavouriteDAO = new RecipeFavouriteDAO($conn);
         $idUser = $_SESSION['idUser'];
         $exerciseFavourites = $exerciseFavouriteDAO->getAllByIdUser($idUser);
+        $recipeFavourites = $recipeFavouriteDAO->getAllByIdUser($idUser);
 
         require 'app/views/favourites.php';
     }
@@ -43,6 +45,44 @@ class ControladorFavorito{
         }
         
         if($exerciseFavouriteDAO->deleteExerciseFavourite($favorito)){
+            print json_encode(['respuesta'=>'ok']);
+        }else{
+            print json_encode(['respuesta'=>'error']);
+        }
+    }
+
+    public function insertRecipeFavourite(){
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+    
+        $idRecipe = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $idUser = $_SESSION['idUser'];
+    
+        $recipeFavouriteDAO = new RecipeFavouriteDAO($conn);
+        $recipeFavourite = new RecipeFavourite();
+    
+        $recipeFavourite->setIdRecipe($idRecipe);
+        $recipeFavourite->setIdUser($idUser);
+
+        if ($recipeFavouriteDAO->insertRecipeFavourite($recipeFavourite)) {
+            print json_encode(['respuesta' => 'ok']);
+        } else {
+            print json_encode(['respuesta' => 'error']);
+        }
+    }
+
+    public function deleteRecipeFavourite(){
+        $connexionDB = new ConexionDB(MYSQL_USER,MYSQL_PASS,MYSQL_HOST,MYSQL_DB);
+        $conn = $connexionDB->getConexion();
+
+        $idRecipe = filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
+        $recipeFavouriteDAO = new RecipeFavouriteDAO($conn);
+        if(!$favorito = $recipeFavouriteDAO->getByIdRecipeIdUser($idRecipe, $_SESSION['idUser'])){
+            print json_encode(['respuesta'=>'error', 'mensaje'=>'el favorito no existe']);
+            die();
+        }
+        
+        if($recipeFavouriteDAO->deleteRecipeFavourite($favorito)){
             print json_encode(['respuesta'=>'ok']);
         }else{
             print json_encode(['respuesta'=>'error']);

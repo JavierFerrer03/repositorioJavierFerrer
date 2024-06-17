@@ -70,4 +70,20 @@ class SessionDAO{
             return false;
         }
     }
+
+    public function delete($id):bool{
+        if(!$stmt = $this->conn->prepare("DELETE FROM session WHERE id = ?"))
+        {
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+
+        $stmt -> bind_param('i', $id);
+        $stmt->execute();
+
+        if($stmt->affected_rows == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

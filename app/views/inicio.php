@@ -15,7 +15,7 @@
     <header class="header bg-dark">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <img src="web/images/logo.png" alt="" class="imageLogo">
+                <a href="index.php?accion=inicio"><img src="web/images/logo.png" alt="" class="imageLogo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -28,7 +28,10 @@
                             <a class="nav-link" href="index.php?accion=inicioDiets">Dietas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Recetas</a>
+                            <a class="nav-link" href="index.php?accion=inicioRecipe">Recetas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?accion=sobreMi">Sobre Mí</a>
                         </li>
                     </ul>
                 </div>
@@ -47,7 +50,7 @@
                             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
                                 <li><a class="dropdown-item" href="index.php?accion=clients">Todos Clientes</a></li>
                             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                                <li><a class="dropdown-item" href="index.php?accion=inicioFavourite">Favoritos</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>
@@ -156,7 +159,7 @@
                                         </button>
                                     </h2>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                        <div class="accordion-body">Dentro de la sección de entrenamientos encontrarás ejercicios para comenzar con tu cambio físico</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -166,7 +169,7 @@
                                         </button>
                                     </h2>
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                                        <div class="accordion-body">Dentro de la sección de alimentacion saludable encontrarás dietas para comenzar con un cambio en tu alimentación diaria</div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -176,7 +179,7 @@
                                         </button>
                                     </h2>
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                                        <div class="accordion-body">Dentro de la sección de las recetas podrás añadir recetas innovadoras para que otros usuario puedan elaborarlas</div>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +196,7 @@
         <section class="section__galery">
             <h1 class="main__title text-center border-bottom">CONOCE NUESTROS ENTRENADORES PERSONALES</h1>
             <div class="containerTrainer">
-                <div class="cardTrainer card2">
+                <div class="cardTrainer card1">
                     <div class="borderTrainer">
                         <h2 class="nameTrainer">FERNANDO GARCÍA</h2>
                         <div class="iconsTrainer">
@@ -217,7 +220,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="cardTrainer card2">
+                <div class="cardTrainer card3">
                     <div class="borderTrainer">
                         <h2 class="nameTrainer">MARCOS VILLANUEVA</h2>
                         <div class="iconsTrainer">
@@ -273,6 +276,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="web/js/js.js"></script>
+    <script src="web/js/chat.js"></script>
 </body>
 
 </html>

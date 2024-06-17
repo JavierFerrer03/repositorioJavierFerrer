@@ -31,6 +31,7 @@
                 <label for="dni" class="label__login">DNI</label><br>
                 <input type="text" name="dni" class="input__login" placeholder="12345678H"><br>
                 <input type="submit" class="button__login" value="REGISTRAR">
+                <a href="index.php?accion=login" class="link__register mt-4">INICIAR SESIÓN</a>
                 <h4 class="error__messages"><?= $error ?></h4>
             </form>
         </section>

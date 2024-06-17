@@ -102,4 +102,18 @@ class ControladorSesion{
             }
         }
     }
+
+    public function deleteSession()
+    {
+        $conexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
+        $conn = $conexionDB->getConexion();
+
+        $sessionDAO = new SessionDAO($conn);
+
+        $idSession = htmlentities($_GET['id']);
+
+        if ($sessionDAO->delete($idSession)) {
+            header('location: index.php?accion=inicioSession&id=' . $_SESSION['idTraining']);
+        }
+    }
 }

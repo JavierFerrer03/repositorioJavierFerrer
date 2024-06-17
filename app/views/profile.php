@@ -15,7 +15,7 @@
     <header class="header bg-dark">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <img src="web/images/logo.png" alt="" class="imageLogo">
+                <a href="index.php?accion=inicio"><img src="web/images/logo.png" alt="" class="imageLogo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,10 +25,13 @@
                             <a class="nav-link" href="index.php?accion=inicioTraining">Entrenamientos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dietas</a>
+                            <a class="nav-link" href="index.php?accion=inicioDiets">Dietas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Recetas</a>
+                            <a class="nav-link" href="index.php?accion=inicioRecipe">Recetas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?accion=sobreMi">Sobre Mí</a>
                         </li>
                     </ul>
                 </div>
@@ -45,9 +48,9 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="index.php?accion=profile">Mi perfil</a></li>
                             <?php if ($_SESSION['rol'] === 'ADMIN') : ?>
-                                <li><a class="dropdown-item" href="#">Todos Clientes</a></li>
+                                <li><a class="dropdown-item" href="index.php?accion=clients">Todos Clientes</a></li>
                             <?php elseif ($_SESSION['rol'] === 'CLIENTE') : ?>
-                                <li><a class="dropdown-item" href="#">Clientillos</a></li>
+                                <li><a class="dropdown-item" href="index.php?accion=inicioFavourite">Favoritos</a></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="index.php?accion=logout" id="logout-button">Cerrar sesión</a></li>
                         </ul>

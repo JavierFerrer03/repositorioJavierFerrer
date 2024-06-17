@@ -971,6 +971,14 @@
     background-image: url('../images/dietFondo.jpeg');
 }
 
+#receta1 {
+    background-image: url('../images/receta1.jpg');
+}
+
+#receta2 {
+    background-image: url('../images/receta2.jpg');
+}
+
 .section__allSession {
     display: flex;
     justify-content: space-around;
@@ -1385,6 +1393,11 @@
     font-size: 1.3rem;
 }
 
+.iconoFavoritoOff:hover {
+    color: red;
+    font-size: 1.3rem;
+}
+
 .iconoFavoritoOn {
     color: red;
     font-size: 1.3rem;
@@ -1449,21 +1462,23 @@
     margin: 0 auto;
 }
 
-.borderTrainer{
+.borderTrainer {
     height: 369px;
     width: 290px;
     background: transparent;
     border-radius: 10px;
     transition: border 1s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  &:hover{
-    border: 1px solid white;
-  }
+    &:hover {
+        border: 1px solid white;
+    }
 }
-  
 
-.cardTrainer{
+.cardTrainer {
     height: 379px;
     width: 300px;
     background: grey;
@@ -1478,49 +1493,191 @@
     position: relative;
 }
 
-.card2{
-    background: url('https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg') center center no-repeat;
+.card2 {
+    background: url('../images/perfilTrainer1.jpg') center center no-repeat;
     background-size: 300px;
 
-  &:hover{
-    background: url('https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg') left center no-repeat;
-    background-size: 600px;
-  }
+    &:hover {
+        background: url('../images/perfilTrainer1.jpg') left center no-repeat;
+        background-size: 600px;
+    }
 
-    .nameTrainer{
+    .nameTrainer {
         opacity: 1;
     }
 
-    .faTrainer{
+    .faTrainer {
         opacity: 1;
     }
-      
 }
-  
 
-.nameTrainer{
+.card1 {
+    background: url('../images/perfilTrainer1.avif') center center no-repeat;
+    background-size: 300px;
+
+    &:hover {
+        background: url('../images/perfilTrainer1.avif') left center no-repeat;
+        background-size: 600px;
+    }
+
+    .nameTrainer {
+        opacity: 1;
+    }
+
+    .faTrainer {
+        opacity: 1;
+    }
+}
+
+.card3 {
+    background: url('../images/perfilTrainer3.avif') center center no-repeat;
+    background-size: 300px;
+
+    &:hover {
+        background: url('../images/perfilTrainer3.avif') left center no-repeat;
+        background-size: 600px;
+    }
+
+    .nameTrainer {
+        opacity: 1;
+    }
+
+    .faTrainer {
+        opacity: 1;
+    }
+}
+
+.nameTrainer {
     color: white;
     margin: 20px;
     opacity: 0;
     transition: opacity 1s;
+    align-self: center;
 }
-  
 
-.fa{
+.fa {
     opacity: 0;
     transition: opacity 1s;
 }
-  
-.iconsTrainer{
-    position: absolute;
+
+.iconsTrainer {
     fill: #fff;
     color: #fff;
     height: 130px;
-    top: 226px;
     width: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
-  
+
+.recipe-card {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #00fd8f;
+    border-radius: 8px;
+    box-shadow: 0 0px 8px #00fd8f;
+    background-color: #1d1724;
+    display: flex;
+    justify-content: space-around;
+}
+
+.recipe-card__img{
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+}
+
+.recipe-card__image {
+    width: 100%;
+    height: auto;
+}
+
+.recipe-card__content {
+    padding: 20px;
+    width: 50%;
+}
+
+.recipe-card__like{
+    display: flex;
+    padding: 20px;
+}
+
+.recipe-card__title {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    color: #33C490;
+}
+
+.recipe-card__description {
+    font-size: 1em;
+    color: #fff;
+    margin: 0 0 20px;
+}
+
+.recipe-card__details {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.recipe-card__details li {
+    margin: 5px 0;
+}
+
+.recipe-card__button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.recipe-card__button:hover {
+    background-color: #218838;
+}
+
+.recipe__items{
+    color: #fff;
+}
+
+.deleteIcon{
+    color: red;
+    font-size: 1.5rem;
+}
+
+.deleteIcon:hover{
+    color: rgb(141, 26, 26);
+    font-size: 1.5rem;
+}
+
+.iconoRecipeFavoritoOff {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.iconoRecipeFavoritoOff:hover {
+    color: red;
+    font-size: 1.3rem;
+}
+
+.iconoRecipeFavoritoOn {
+    color: red;
+    font-size: 1.3rem;
+}
+
+.text__aboutMe{
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.redes{
+    color: #fff;
+    font-size: 2rem;
+}
